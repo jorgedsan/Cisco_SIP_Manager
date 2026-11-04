@@ -2,13 +2,14 @@
 	<rawname>ciscosipmanager</rawname>
 	<repo>unsupported</repo>
 	<name>Cisco SIP Manager</name>
-	<version>17.6.8</version>
+	<version>17.7.0</version>
 	<publisher>Jorge</publisher>
 	<license>GPLv3+</license>
 	<licenselink>https://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
 	<category>Connectivity</category>
-	<description>Provisión de teléfonos Cisco SIP (79xx/88xx) para chan_sip: generación de SEP*.cnf.xml, perfil VPN AnyConnect (ocserv), estado de registro LAN/VPN y acciones remotas (reinicio, mensajes XML).</description>
+	<description>Provisioning of Cisco SIP phones (79xx/88xx) for chan_sip: SEP*.cnf.xml generation, AnyConnect VPN profile (ocserv), LAN/VPN registration status and remote actions (restart, XML messages).</description>
 	<changelog>
+		*17.7.0* Interfaz en el idioma de FreePBX (gettext): inglés y castellano incluidos
 		*17.6.8* Editar teléfono en un cuadro sobre la lista
 		*17.6.7* Opción Habilitar video por teléfono (8845/8865, 8851/8861 con cámara USB)
 		*17.6.6* callLogBlfEnabled según el modelo (1 en 88xx, 3 en 79xx)

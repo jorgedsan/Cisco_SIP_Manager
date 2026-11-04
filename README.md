@@ -30,6 +30,17 @@ Gestiona teléfonos Cisco con firmware SIP (7945/7965/7975, 88xx) desde FreePBX:
 - **Backup & Restore de FreePBX**: teléfonos, ajustes e historial entran en los backups programados de FreePBX. Al restaurar se regeneran los SEP, `sip_notify` y `authenticate.php`.
 - **VPN AnyConnect** (solo 88xx; los 79x5 no tienen cliente AnyConnect): agrega `<vpnGroup>` al SEP con la URL de ocserv y el `certHash1` calculado desde el certificado PEM.
 
+## Idioma / Language
+
+La interfaz sigue el idioma de FreePBX (*Admin → User Management* o *Advanced Settings → UIDEFAULTLANG*).
+Incluye inglés (textos del código) y castellano (`i18n/es`). Cualquier otro idioma se ve en inglés.
+El sistema tiene que tener instalado el locale (por ejemplo `es_ES.UTF-8`). Los textos de este README
+corresponden a la interfaz en castellano.
+
+The UI follows the FreePBX language. English (source strings) and Spanish are included. To add a language,
+copy `i18n/ciscosipmanager.pot` to `i18n/<lang>/LC_MESSAGES/ciscosipmanager.po`, translate it and run
+`python3 i18n/update.py` (needs GNU gettext), which also refreshes the template and compiles the `.mo` files.
+
 ## Instalación
 
 1. Admin → Module Admin → *Upload modules* → subir `ciscosipmanager-17.6.8.tgz` → instalar.

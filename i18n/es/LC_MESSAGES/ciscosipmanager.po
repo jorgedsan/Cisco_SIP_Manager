@@ -1,0 +1,1676 @@
+# Spanish translation of Cisco SIP Manager for FreePBX.
+# This file is distributed under the same license as the module (GPLv3+).
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ciscosipmanager 17.7.0\n"
+"Report-Msgid-Bugs-To: https://github.com/jorgedsan/Cisco_SIP_Manager/issues\n"
+"POT-Creation-Date: 2026-11-04 00:13+0000\n"
+"PO-Revision-Date: 2026-11-03 21:30-0300\n"
+"Last-Translator: jorgedsan\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: Ciscosipmanager.class.php:190
+msgid "The VPN certificate is not a valid PEM; the hash was not calculated."
+msgstr "El certificado VPN no es un PEM válido; no se calculó el hash."
+
+#: Ciscosipmanager.class.php:220
+msgid "Invalid MAC (12 hexadecimal digits)."
+msgstr "MAC inválida (12 dígitos hexadecimales)."
+
+#: Ciscosipmanager.class.php:224
+msgid "Choose the model."
+msgstr "Falta elegir el modelo."
+
+#: Ciscosipmanager.class.php:224
+msgid "Unsupported model."
+msgstr "Modelo no soportado."
+
+#: Ciscosipmanager.class.php:229
+#, php-format
+msgid "Extension %s does not exist."
+msgstr "La extensión %s no existe."
+
+#: Ciscosipmanager.class.php:232
+#, php-format
+msgid "Extension %s is not chan_sip (tech=%s)."
+msgstr "La extensión %s no es chan_sip (tech=%s)."
+
+#: Ciscosipmanager.class.php:235
+#, php-format
+msgid "The %s has no AnyConnect VPN client (88xx/89xx/99xx only)."
+msgstr "El %s no tiene cliente VPN AnyConnect (solo 88xx/89xx/99xx)."
+
+#: Ciscosipmanager.class.php:240
+msgid "The extra XML is not a valid XML fragment."
+msgstr "El XML extra no es un fragmento XML válido."
+
+#: Ciscosipmanager.class.php:244
+msgid "The additional lines are not a valid XML fragment."
+msgstr "Las líneas adicionales no son un fragmento XML válido."
+
+#: Ciscosipmanager.class.php:272
+#, php-format
+msgid "Database error (duplicate MAC?): %s"
+msgstr "Error de base de datos (¿MAC duplicada?): %s"
+
+#: Ciscosipmanager.class.php:322
+#, php-format
+msgid "Extension %s does not exist in FreePBX"
+msgstr "La extensión %s no existe en FreePBX"
+
+#: Ciscosipmanager.class.php:324
+#, php-format
+msgid "Extension %s is not chan_sip"
+msgstr "La extensión %s no es chan_sip"
+
+#: Ciscosipmanager.class.php:326
+msgid "The password in the file does not match the FreePBX one: the FreePBX one is used when regenerating"
+msgstr "La clave del archivo no coincide con la de FreePBX: al regenerar se usa la de FreePBX"
+
+#: Ciscosipmanager.class.php:329
+#, php-format
+msgid "Extension %s is already assigned to another phone in the module"
+msgstr "La extensión %s ya está asignada a otro teléfono del módulo"
+
+#: Ciscosipmanager.class.php:346
+#, php-format
+msgid "Choose the model (judging by the firmware it may be %s)"
+msgstr "Elegí el modelo (por el firmware puede ser %s)"
+
+#: Ciscosipmanager.class.php:346
+msgid "Choose the model"
+msgstr "Elegí el modelo"
+
+#: Ciscosipmanager.class.php:350
+msgid "It has a vpnGroup but the model does not support VPN: it will not be included"
+msgstr "Tiene vpnGroup pero el modelo no soporta VPN: no se va a incluir"
+
+#: Ciscosipmanager.class.php:532
+#, php-format
+msgid "Cannot write to %s (check the permissions for the asterisk user)."
+msgstr "No se puede escribir en %s (revisá permisos para el usuario asterisk)."
+
+#: Ciscosipmanager.class.php:535
+#, php-format
+msgid "Error writing %s"
+msgstr "Error escribiendo %s"
+
+#: Ciscosipmanager.class.php:548
+msgid "Phone not found."
+msgstr "Teléfono inexistente."
+
+#: Ciscosipmanager.class.php:619
+msgid "Version not found."
+msgstr "Versión inexistente."
+
+#: Ciscosipmanager.class.php:742 Ciscosipmanager.class.php:1464
+msgid "Unknown action"
+msgstr "Acción desconocida"
+
+#: Ciscosipmanager.class.php:746
+msgid "No AMI connection"
+msgstr "Sin conexión AMI"
+
+#: Ciscosipmanager.class.php:773
+#, php-format
+msgid "Could not connect to the phone: %s"
+msgstr "No se pudo conectar con el teléfono: %s"
+
+#: Ciscosipmanager.class.php:776
+msgid "The phone rejected the push user/password (HTTP 401). Check authenticationURL and that it answers AUTHORIZED."
+msgstr "El teléfono rechazó el usuario/clave push (HTTP 401). Revisá authenticationURL y que responda AUTHORIZED."
+
+#: Ciscosipmanager.class.php:787
+msgid "(usually an authentication error: check authenticationURL and the push user/password)"
+msgstr "(suele ser error de autenticación: revisá authenticationURL y el usuario/clave push)"
+
+#: Ciscosipmanager.class.php:788
+#, php-format
+msgid "The phone answered CiscoIPPhoneError %s."
+msgstr "El teléfono respondió CiscoIPPhoneError %s."
+
+#: Ciscosipmanager.class.php:792
+#, php-format
+msgid "The phone did not return an image (HTTP %s). Is the phone web page enabled?"
+msgstr "El teléfono no devolvió una imagen (HTTP %s). ¿Está habilitada la página web del teléfono?"
+
+#: Ciscosipmanager.class.php:801
+msgid "The phone is not registered (no IP)."
+msgstr "El teléfono no está registrado (no hay IP)."
+
+#: Ciscosipmanager.class.php:810
+msgid "Phone without IP (not registered)"
+msgstr "Teléfono sin IP (no registrado)"
+
+#: Ciscosipmanager.class.php:829
+#, php-format
+msgid "HTTP error: %s"
+msgstr "Error HTTP: %s"
+
+#: Ciscosipmanager.class.php:832
+#, php-format
+msgid "The phone rejected the push (HTTP %s): %s — check authenticationURL and user/password."
+msgstr "El teléfono rechazó el push (HTTP %s): %s — revisá authenticationURL y usuario/clave."
+
+#: Ciscosipmanager.class.php:872
+msgid "Key not allowed"
+msgstr "Tecla no permitida"
+
+#: Ciscosipmanager.class.php:880
+msgid "Invalid number (digits, *, # and + only)"
+msgstr "Número inválido (solo dígitos, *, # y +)"
+
+#: Ciscosipmanager.class.php:899
+#, php-format
+msgid "Could not connect: %s"
+msgstr "No se pudo conectar: %s"
+
+#: Ciscosipmanager.class.php:902
+#, php-format
+msgid "Invalid response (HTTP %s). Is the phone web page enabled?"
+msgstr "Respuesta inválida (HTTP %s). ¿Está habilitada la página web del teléfono?"
+
+#: Ciscosipmanager.class.php:915 Ciscosipmanager.class.php:1472
+msgid "not registered"
+msgstr "no registrado"
+
+#: Ciscosipmanager.class.php:937
+#, php-format
+msgid "The phone reports model %s and the module has it as %s"
+msgstr "El teléfono informa modelo %s y en el módulo está como %s"
+
+#: Ciscosipmanager.class.php:940
+#, php-format
+msgid "Firmware differs from the configured one (%s)"
+msgstr "Firmware distinto al configurado (%s)"
+
+#: Ciscosipmanager.class.php:943
+msgid "The reported MAC does not match: the registered IP may belong to another device"
+msgstr "La MAC informada no coincide: la IP registrada puede ser de otro equipo"
+
+#: Ciscosipmanager.class.php:956
+msgid "Invalid occtl command in Settings"
+msgstr "Comando occtl inválido en Ajustes"
+
+#: Ciscosipmanager.class.php:1000
+msgid "occtl failed"
+msgstr "occtl falló"
+
+#: Ciscosipmanager.class.php:1004
+msgid "Could not parse the occtl output"
+msgstr "No se pudo interpretar la salida de occtl"
+
+#: Ciscosipmanager.class.php:1021
+msgid "Invalid ID"
+msgstr "ID inválido"
+
+#: Ciscosipmanager.class.php:1024
+msgid "Session disconnected"
+msgstr "Sesión desconectada"
+
+#: Ciscosipmanager.class.php:1093
+msgid "Invalid screen family."
+msgstr "Familia de pantalla inválida."
+
+#: Ciscosipmanager.class.php:1097
+msgid "Not a valid image (PNG, JPEG, GIF, BMP or WebP, up to 20 MB)."
+msgstr "No es una imagen válida (PNG, JPEG, GIF, BMP o WebP, hasta 20 MB)."
+
+#: Ciscosipmanager.class.php:1101
+#, php-format
+msgid "Could not create %s"
+msgstr "No se pudo crear %s"
+
+#: Ciscosipmanager.class.php:1116
+#, php-format
+msgid "Could not write to %s"
+msgstr "No se pudo escribir en %s"
+
+#: Ciscosipmanager.class.php:1122 Ciscosipmanager.class.php:1148
+msgid "Could not write List.xml"
+msgstr "No se pudo escribir List.xml"
+
+#: Ciscosipmanager.class.php:1138
+msgid "Image not found."
+msgstr "Imagen inexistente."
+
+#: Ciscosipmanager.class.php:1220
+msgid "Neither sox nor ffmpeg is available on the server to convert the audio."
+msgstr "No hay sox ni ffmpeg en el servidor para convertir el audio."
+
+#: Ciscosipmanager.class.php:1225
+#, php-format
+msgid "Could not convert the audio: %s"
+msgstr "No se pudo convertir el audio: %s"
+
+#: Ciscosipmanager.class.php:1244
+msgid "Choose at least one list."
+msgstr "Elegí al menos una lista."
+
+#: Ciscosipmanager.class.php:1252
+#, php-format
+msgid "%s: it already has 50 ringtones, the maximum."
+msgstr "%s: ya tiene 50 tonos, el máximo."
+
+#: Ciscosipmanager.class.php:1273
+#, php-format
+msgid "Could not write %s in the provisioning directory."
+msgstr "No se pudo escribir %s en el directorio de provisión."
+
+#: Ciscosipmanager.class.php:1279 Ciscosipmanager.class.php:1295
+#: Ciscosipmanager.class.php:1309
+#, php-format
+msgid "Could not write %s"
+msgstr "No se pudo escribir %s"
+
+#: Ciscosipmanager.class.php:1290 Ciscosipmanager.class.php:1309
+msgid "Ringtone not found."
+msgstr "Tono inexistente."
+
+#: Ciscosipmanager.class.php:1329 Ciscosipmanager.class.php:1339
+#: Ciscosipmanager.class.php:1357 Ciscosipmanager.class.php:1364
+#: Ciscosipmanager.class.php:1423 Ciscosipmanager.class.php:1432
+#: Ciscosipmanager.class.php:1439 Ciscosipmanager.class.php:1448
+msgid "Phone not found"
+msgstr "Teléfono inexistente"
+
+#: Ciscosipmanager.class.php:1334 Ciscosipmanager.class.php:1351
+msgid "Version not found"
+msgstr "Versión inexistente"
+
+#: Ciscosipmanager.class.php:1358
+msgid "Version restored on the phone. Remember that regenerating builds it again from the current data."
+msgstr "Versión restaurada en el teléfono. Recordá que si regenerás, se vuelve a armar desde los datos actuales."
+
+#: Ciscosipmanager.class.php:1403
+msgid "Image deleted"
+msgstr "Imagen eliminada"
+
+#: Ciscosipmanager.class.php:1415
+msgid "Ringtone removed"
+msgstr "Tono quitado"
+
+#: Ciscosipmanager.class.php:1419
+msgid "Name updated"
+msgstr "Nombre actualizado"
+
+#: Ciscosipmanager.class.php:1427 Ciscosipmanager.class.php:1494
+msgid "Phone saved and SEP generated."
+msgstr "Teléfono guardado y SEP generado."
+
+#: Ciscosipmanager.class.php:1453
+msgid "File regenerated"
+msgstr "Archivo regenerado"
+
+#: Ciscosipmanager.class.php:1461 Ciscosipmanager.class.php:1475
+#: views/list.php:97
+msgid "Notice"
+msgstr "Aviso"
+
+#: Ciscosipmanager.class.php:1480
+msgid "Unknown command"
+msgstr "Comando desconocido"
+
+#: Ciscosipmanager.class.php:1498
+msgid "Phone deleted."
+msgstr "Teléfono eliminado."
+
+#: Ciscosipmanager.class.php:1502
+msgid "Settings saved. Regenerate the SEP files to apply them."
+msgstr "Ajustes guardados. Regenerá los SEP para aplicarlos."
+
+#: Ciscosipmanager.class.php:1506
+msgid "The image was not received."
+msgstr "No se recibió la imagen."
+
+#: Ciscosipmanager.class.php:1507
+msgid "Background added. Phones see it under Settings → Preferences → Wallpaper."
+msgstr "Fondo agregado. Los teléfonos lo ven en Ajustes → Preferencias → Fondo de pantalla."
+
+#: Ciscosipmanager.class.php:1511
+msgid "The file was not received."
+msgstr "No se recibió el archivo."
+
+#: Ciscosipmanager.class.php:1512
+msgid "Ringtone added."
+msgstr "Tono agregado."
+
+#: Ciscosipmanager.class.php:1517
+#, php-format
+msgid "%d phone(s) imported. The files were not modified: check \"Compare with what would be generated\" before regenerating."
+msgstr "%d teléfono(s) importado(s). Los archivos no se modificaron: revisá \"Comparar con lo que se generaría\" antes de regenerar."
+
+#: Ciscosipmanager.class.php:1523
+msgid "You did not select any file."
+msgstr "No seleccionaste ningún archivo."
+
+#: Ciscosipmanager.class.php:1529
+msgid "All SEP files regenerated."
+msgstr "Todos los SEP regenerados."
+
+#: Ciscosipmanager.class.php:1531
+#, php-format
+msgid "Imported phones pending review were not touched (ext. %s). Regenerate them one by one from Actions after comparing."
+msgstr "No se tocaron los importados pendientes de revisión (ext. %s). Regeneralos uno por uno desde Acciones después de comparar."
+
+#: lib/CnfBuilder.php:56
+msgid "built-in camera"
+msgstr "cámara integrada"
+
+#: lib/CnfBuilder.php:56
+msgid "USB camera"
+msgstr "cámara USB"
+
+#: lib/Importer.php:26
+msgid "8845 or 8865"
+msgstr "8845 u 8865"
+
+#: lib/Importer.php:29
+msgid "8811, 8841, 8851 or 8861"
+msgstr "8811, 8841, 8851 u 8861"
+
+#: lib/Importer.php:55
+msgid "The name is not SEP<MAC>.cnf.xml"
+msgstr "El nombre no es SEP<MAC>.cnf.xml"
+
+#: lib/Importer.php:65
+msgid "Not a valid <device> XML"
+msgstr "No es un XML <device> válido"
+
+#: lib/Importer.php:88
+msgid "It has no <line button=\"1\"> with <name>"
+msgstr "No tiene <line button=\"1\"> con <name>"
+
+#: lib/Remote.php:226
+msgid "Wideband (88xx)"
+msgstr "Banda ancha (88xx)"
+
+#: lib/Remote.php:226
+msgid "Narrowband (79xx)"
+msgstr "Banda angosta (79xx)"
+
+#: views/_nav.php:10
+msgid "Phones"
+msgstr "Teléfonos"
+
+#: views/_nav.php:11
+msgid "Add phone"
+msgstr "Agregar teléfono"
+
+#: views/_nav.php:12
+msgid "Import existing SEP files"
+msgstr "Importar SEP existentes"
+
+#: views/_nav.php:13
+msgid "Inventory"
+msgstr "Inventario"
+
+#: views/_nav.php:14 views/settings.php:111
+msgid "VPN sessions"
+msgstr "Sesiones VPN"
+
+#: views/_nav.php:15
+msgid "Backgrounds and ringtones"
+msgstr "Fondos y tonos"
+
+#: views/_nav.php:16 views/list.php:164
+msgid "Settings"
+msgstr "Ajustes"
+
+#: views/_phoneform.php:14
+msgid "This phone was imported and its SEP is still the original one. Saving regenerates the file (the original stays in the history). If you have not reviewed it, use <i>Compare with what would be generated</i> first."
+msgstr "Este teléfono fue importado y su SEP todavía es el original. Al guardar se regenera el archivo (el original queda en el historial). Si no lo revisaste, usá antes <i>Comparar con lo que se generaría</i>."
+
+#: views/_phoneform.php:24
+#, php-format
+msgid "Saved as SEP<em>MAC</em>.cnf.xml in %s"
+msgstr "Se guarda como SEP<em>MAC</em>.cnf.xml en %s"
+
+#: views/_phoneform.php:28 views/import.php:13 views/list.php:38
+msgid "Model"
+msgstr "Modelo"
+
+#: views/_phoneform.php:38
+msgid "Extension (chan_sip)"
+msgstr "Extensión (chan_sip)"
+
+#: views/_phoneform.php:41 views/import.php:23
+msgid "choose"
+msgstr "elegir"
+
+#: views/_phoneform.php:45
+msgid "(already assigned)"
+msgstr "(ya asignada)"
+
+#: views/_phoneform.php:49
+msgid "Only chan_sip devices are listed. The password is taken from FreePBX."
+msgstr "Solo se listan dispositivos chan_sip. La clave se toma de FreePBX."
+
+#: views/_phoneform.php:53
+msgid "Line label"
+msgstr "Etiqueta de línea"
+
+#: views/_phoneform.php:57 views/import.php:13
+msgid "Location"
+msgstr "Ubicación"
+
+#: views/_phoneform.php:60
+msgid "Auto: LAN at home, VPN when away"
+msgstr "Auto: en casa por LAN, afuera por VPN"
+
+#: views/_phoneform.php:61
+msgid "LAN only"
+msgstr "Solo LAN"
+
+#: views/_phoneform.php:62
+msgid "Always through VPN"
+msgstr "Siempre por VPN"
+
+#: views/_phoneform.php:64
+#, php-format
+msgid "<b>Auto</b> (with VPN checked): two servers in callManagerGroup, the PBX IP inside the VPN (%s) and the LAN one (%s), and <code>autoNetDetect</code> 1: the phone only brings the tunnel up when it cannot reach the home network.<br><b>Always through VPN</b>: only the VPN server and <code>autoNetDetect</code> 0. <b>LAN only</b>: only the LAN IP."
+msgstr "<b>Auto</b> (con VPN tildada): dos servidores en callManagerGroup, la IP del PBX en la VPN (%s) y la LAN (%s), y <code>autoNetDetect</code> 1: el teléfono solo levanta el túnel si no llega a la red de casa.<br><b>Siempre por VPN</b>: solo el servidor VPN y <code>autoNetDetect</code> 0. <b>Solo LAN</b>: solo la IP LAN."
+
+#: views/_phoneform.php:68
+msgid "SIP server (optional)"
+msgstr "Servidor SIP (opcional)"
+
+#: views/_phoneform.php:73
+msgid "Include AnyConnect VPN profile (ocserv) — 88xx only"
+msgstr "Incluir perfil VPN AnyConnect (ocserv) — solo 88xx"
+
+#: views/_phoneform.php:74
+msgid "The VPN URL is not configured in Settings yet."
+msgstr "Falta configurar la URL de VPN en Ajustes."
+
+#: views/_phoneform.php:84
+msgid "Enable video"
+msgstr "Habilitar video"
+
+#: views/_phoneform.php:85
+#, php-format
+msgid "Sets <code>videoCapability</code> in the SEP (takes precedence over the extra XML). For video calls, chan_sip needs <code>videosupport=yes</code> and the <code>h264</code> codec enabled on the extension and on the other end. Available on %s."
+msgstr "Pone <code>videoCapability</code> en el SEP (tiene prioridad sobre el XML extra). Para que haya videollamadas, chan_sip necesita <code>videosupport=yes</code> y el códec <code>h264</code> habilitado en la extensión y en el otro extremo. Disponible en %s."
+
+#: views/_phoneform.php:96
+msgid "Additional lines"
+msgstr "Líneas adicionales"
+
+#: views/_phoneform.php:100
+msgid "Key"
+msgstr "Tecla"
+
+#: views/_phoneform.php:100
+msgid "Type"
+msgstr "Tipo"
+
+#: views/_phoneform.php:100 views/import.php:13
+msgid "Label"
+msgstr "Etiqueta"
+
+#: views/_phoneform.php:100
+msgid "Extension / number"
+msgstr "Extensión / número"
+
+#: views/_phoneform.php:100
+msgid "Options"
+msgstr "Opciones"
+
+#: views/_phoneform.php:103 views/_phoneform.php:140
+msgid "Line"
+msgstr "Línea"
+
+#: views/_phoneform.php:105
+msgid "view / edit XML"
+msgstr "ver / editar XML"
+
+#: views/_phoneform.php:109
+msgid "Keys 2 onwards. <b>Line</b>: another extension on the same phone (with \"FreePBX password\" the password is filled in when generating, it is not stored here). <b>BLF / speed dial</b>: shows the state of an extension and dials it when pressed. Anything the editor does not know is kept as is."
+msgstr "Teclas 2 en adelante. <b>Línea</b>: otra extensión en el mismo teléfono (con \"clave de FreePBX\" la contraseña se completa al generar, no queda guardada acá). <b>BLF / speed dial</b>: muestra el estado de una extensión y la marca al tocarla. Lo que el editor no conoce se conserva tal cual."
+
+#: views/_phoneform.php:113
+msgid "Extra XML"
+msgstr "XML extra"
+
+#: views/_phoneform.php:116
+msgid "Fragment inserted before &lt;/device&gt;; top-level elements with the same name as a generated one replace it."
+msgstr "Fragmento que se inserta antes de &lt;/device&gt;; los elementos de primer nivel con el mismo nombre que uno generado lo reemplazan."
+
+#: views/_phoneform.php:121
+msgid "Save and generate SEP"
+msgstr "Guardar y generar SEP"
+
+#: views/_phoneform.php:123 views/_phoneform.php:125 views/import.php:40
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: views/_phoneform.php:135
+msgid "Intercom (auto-answers on the speaker)"
+msgstr "Intercom (atiende solo por altavoz)"
+
+#: views/_phoneform.php:136
+msgid "FreePBX password"
+msgstr "Clave de FreePBX"
+
+#: views/_phoneform.php:137
+msgid "(it currently has its own password)"
+msgstr "(hoy tiene una clave propia)"
+
+#: views/_phoneform.php:138
+msgid "featureOptionMask 1 (BLF with state/pickup)"
+msgstr "featureOptionMask 1 (BLF con estado/captura)"
+
+#: views/_phoneform.php:139
+#, php-format
+msgid "featureID %s: kept as is"
+msgstr "featureID %s: se conserva tal cual"
+
+#: views/_phoneform.php:141
+msgid "Other"
+msgstr "Otro"
+
+#: views/_phoneform.php:142
+msgid "No additional keys."
+msgstr "Sin teclas adicionales."
+
+#: views/_phoneform.php:143
+msgid "The XML is not a valid list of <line> elements: fix it before going back to the editor."
+msgstr "El XML no es una lista de <line> válida: corregilo antes de volver al editor."
+
+#: views/_phoneform.php:144
+msgid "Invalid XML: the editor shows the last valid version."
+msgstr "XML inválido: el editor muestra la última versión válida."
+
+#: views/_phoneform.php:145
+msgid "The current XML could not be parsed: edit it by hand."
+msgstr "No se pudo interpretar el XML actual: editalo a mano."
+
+#: views/import.php:3
+#, php-format
+msgid "<code>SEP*.cnf.xml</code> files in %s that are not in the module yet. Importing <b>does not modify the files</b>: it saves a copy in the history and adds the phone. Whatever the module does not generate (services, extra keys, etc.) goes to the extra XML, and lines 2 onwards go to \"Additional lines\"."
+msgstr "Archivos <code>SEP*.cnf.xml</code> en %s que todavía no están en el módulo. Importar <b>no modifica los archivos</b>: guarda una copia en el historial y da de alta el teléfono. Lo que el módulo no genera (servicios, teclas extra, etc.) pasa al XML extra y las líneas 2 en adelante a \"Líneas adicionales\"."
+
+#: views/import.php:5
+#, php-format
+msgid "Before regenerating the imported phones, fill in under <a href=\"%s\">Settings</a> the VPN URL and certificate, the firmware per model and the service URLs: when regenerating, <code>vpnGroup</code>, <code>loadInformation</code>, <code>capfAuthMode</code> and the other elements the module generates come from Settings, not from the original file."
+msgstr "Antes de regenerar los importados, completá en <a href=\"%s\">Ajustes</a> la URL y el certificado de la VPN, el firmware por modelo y las URLs de servicios: al regenerar, <code>vpnGroup</code>, <code>loadInformation</code>, <code>capfAuthMode</code> y los demás elementos que genera el módulo salen de Ajustes, no del archivo original."
+
+#: views/import.php:8
+msgid "There are no SEP files left to import in that directory."
+msgstr "No hay archivos SEP sin importar en ese directorio."
+
+#: views/import.php:13 views/media.php:55
+msgid "File"
+msgstr "Archivo"
+
+#: views/import.php:13 views/inventory.php:8 views/list.php:38
+msgid "Ext."
+msgstr "Ext."
+
+#: views/import.php:13
+msgid "Kept"
+msgstr "Se conserva"
+
+#: views/import.php:13 views/inventory.php:8
+msgid "Warnings"
+msgstr "Avisos"
+
+#: views/import.php:29
+msgid "Always VPN"
+msgstr "Siempre VPN"
+
+#: views/import.php:29
+msgid "With VPN"
+msgstr "Con VPN"
+
+#: views/import.php:31
+#, php-format
+msgid "%d additional line(s)"
+msgstr "%d línea(s) adicional(es)"
+
+#: views/import.php:39
+msgid "Import selected"
+msgstr "Importar seleccionados"
+
+#: views/import.php:42
+msgid "After importing, use <i>Actions → Compare with what would be generated</i> on each phone. Only when the diff looks right, <i>Regenerate SEP</i>. \"Regenerate all\" does not touch imported phones until you regenerate them once."
+msgstr "Después de importar, en cada teléfono usá <i>Acciones → Comparar con lo que se generaría</i>. Recién cuando el diff te convenza, <i>Regenerar SEP</i>. \"Regenerar todos\" no toca los importados hasta que los regeneres una vez."
+
+#: views/inventory.php:3
+msgid "Data each phone reports in <code>/DeviceInformationX</code>. It is stored when refreshing; unregistered phones show the last known data."
+msgstr "Datos que informa cada teléfono en <code>/DeviceInformationX</code>. Se guardan al actualizar; los no registrados muestran el último dato conocido."
+
+#: views/inventory.php:4
+msgid "Refresh all"
+msgstr "Actualizar todos"
+
+#: views/inventory.php:8 views/list.php:38 views/media.php:54
+msgid "Name"
+msgstr "Nombre"
+
+#: views/inventory.php:8
+msgid "Model (module)"
+msgstr "Modelo (módulo)"
+
+#: views/inventory.php:8
+msgid "Actual model"
+msgstr "Modelo real"
+
+#: views/inventory.php:8
+msgid "Serial number"
+msgstr "N.º de serie"
+
+#: views/inventory.php:8
+msgid "Read"
+msgstr "Leído"
+
+#: views/inventory.php:20
+msgid "never"
+msgstr "nunca"
+
+#: views/inventory.php:22
+msgid "all"
+msgstr "todo"
+
+#: views/inventory.php:40
+msgid "Querying phones…"
+msgstr "Consultando teléfonos…"
+
+#: views/list.php:7 lib/JsStrings.php:36 assets/js/ciscosipmanager.js:16
+msgid "Other network"
+msgstr "Otra red"
+
+#: views/list.php:14
+msgid "Regenerate all SEP files"
+msgstr "Regenerar todos los SEP"
+
+#: views/list.php:16
+msgid "Restarts the phone software (restart): fast, without powering the device off"
+msgstr "Reinicia el software del teléfono (restart): rápido, sin apagar el equipo"
+
+#: views/list.php:16
+msgid "Restart all"
+msgstr "Restart todos"
+
+#: views/list.php:17
+msgid "Full device restart (reboot)"
+msgstr "Reinicio completo del equipo (reboot)"
+
+#: views/list.php:17
+msgid "Reboot all"
+msgstr "Reboot todos"
+
+#: views/list.php:18
+msgid "Waits for each phone to register again before restarting the next one"
+msgstr "Espera que cada teléfono vuelva a registrarse antes de reiniciar el siguiente"
+
+#: views/list.php:19
+msgid "one at a time"
+msgstr "de a uno"
+
+#: views/list.php:20
+msgid "Message to all"
+msgstr "Mensaje a todos"
+
+#: views/list.php:25
+#, php-format
+msgid "%s selected:"
+msgstr "%s seleccionado(s):"
+
+#: views/list.php:26 views/list.php:66 lib/JsStrings.php:37
+#: assets/js/ciscosipmanager.js:229
+msgid "Regenerate SEP"
+msgstr "Regenerar SEP"
+
+#: views/list.php:27 lib/JsStrings.php:39 assets/js/ciscosipmanager.js:230
+msgid "Reload config"
+msgstr "Recargar config"
+
+#: views/list.php:28 lib/JsStrings.php:41 assets/js/ciscosipmanager.js:231
+msgid "Restart"
+msgstr "Reiniciar"
+
+#: views/list.php:29 lib/JsStrings.php:28 assets/js/ciscosipmanager.js:232
+msgid "Full reset"
+msgstr "Reset completo"
+
+#: views/list.php:30
+msgid "Message…"
+msgstr "Mensaje…"
+
+#: views/list.php:31
+msgid "For restarts: waits for each phone to register again before moving on to the next one"
+msgstr "Para reinicios: espera que cada teléfono vuelva a registrarse antes de seguir con el próximo"
+
+#: views/list.php:32
+msgid "one at a time, waiting for it to register again"
+msgstr "de a uno, esperando que vuelva a registrar"
+
+#: views/list.php:38
+msgid "Select all"
+msgstr "Seleccionar todos"
+
+#: views/list.php:38
+msgid "Network"
+msgstr "Red"
+
+#: views/list.php:39
+msgid "Latency"
+msgstr "Latencia"
+
+#: views/list.php:39 views/list.php:63
+msgid "Actions"
+msgstr "Acciones"
+
+#: views/list.php:44
+#, php-format
+msgid "No phones yet. <a href=\"%s\">Add one</a> or <a href=\"%s\">import your existing SEP files</a>."
+msgstr "No hay teléfonos. <a href=\"%s\">Agregá uno</a> o <a href=\"%s\">importá tus SEP existentes</a>."
+
+#: views/list.php:54
+#, php-format
+msgid "(fixed: %s)"
+msgstr "(fijo: %s)"
+
+#: views/list.php:58
+msgid "VPN profile included"
+msgstr "Perfil VPN incluido"
+
+#: views/list.php:60
+msgid "Imported: the file is the original one. Compare before regenerating."
+msgstr "Importado: el archivo es el original. Compará antes de regenerar."
+
+#: views/list.php:60
+msgid "imported"
+msgstr "importado"
+
+#: views/list.php:65
+msgid "Compare with what would be generated"
+msgstr "Comparar con lo que se generaría"
+
+#: views/list.php:67
+msgid "Reload config (check-sync)"
+msgstr "Recargar config (check-sync)"
+
+#: views/list.php:68
+msgid "Restart (soft)"
+msgstr "Reiniciar (restart)"
+
+#: views/list.php:69
+msgid "Full reset (reboot)"
+msgstr "Reset completo (reboot)"
+
+#: views/list.php:71
+msgid "Send message…"
+msgstr "Enviar mensaje…"
+
+#: views/list.php:72
+msgid "View screen and remote control"
+msgstr "Ver pantalla y control remoto"
+
+#: views/list.php:73
+msgid "Call from this phone…"
+msgstr "Llamar desde este teléfono…"
+
+#: views/list.php:74
+msgid "View generated XML"
+msgstr "Ver XML generado"
+
+#: views/list.php:75
+msgid "Version history…"
+msgstr "Historial de versiones…"
+
+#: views/list.php:77
+msgid "Edit…"
+msgstr "Editar…"
+
+#: views/list.php:78
+msgid "Delete"
+msgstr "Eliminar"
+
+#: views/list.php:94
+msgid "Send message"
+msgstr "Enviar mensaje"
+
+#: views/list.php:97
+msgid "Title"
+msgstr "Título"
+
+#: views/list.php:98
+msgid "Text"
+msgstr "Texto"
+
+#: views/list.php:99
+msgid "Play a tone"
+msgstr "Sonar tono"
+
+#: views/list.php:102 views/list.php:178 views/list.php:191 views/list.php:204
+msgid "Close"
+msgstr "Cerrar"
+
+#: views/list.php:102
+msgid "Send"
+msgstr "Enviar"
+
+#: views/list.php:108
+msgid "Version history"
+msgstr "Historial de versiones"
+
+#: views/list.php:112
+msgid "Date"
+msgstr "Fecha"
+
+#: views/list.php:112
+msgid "Origin"
+msgstr "Origen"
+
+#: views/list.php:112
+msgid "Size"
+msgstr "Tamaño"
+
+#: views/list.php:119
+#, php-format
+msgid "Stored outside the provisioning directory: %s. Restoring writes that version to the phone, but does not change the module data: regenerating builds it again from the current data."
+msgstr "Se guarda fuera del directorio de provisión: %s. Restaurar escribe esa versión en el teléfono, pero no cambia los datos del módulo: al regenerar se vuelve a armar desde los datos actuales."
+
+#: views/list.php:127
+msgid "Screen"
+msgstr "Pantalla"
+
+#: views/list.php:144
+msgid "Back"
+msgstr "Atrás"
+
+#: views/list.php:153
+msgid "Speaker"
+msgstr "Altavoz"
+
+#: views/list.php:154
+msgid "Headset"
+msgstr "Auricular"
+
+#: views/list.php:155
+msgid "Mute"
+msgstr "Mute"
+
+#: views/list.php:156
+msgid "Hold"
+msgstr "Espera"
+
+#: views/list.php:157
+msgid "Transfer"
+msgstr "Transferir"
+
+#: views/list.php:158
+msgid "Conference"
+msgstr "Conferencia"
+
+#: views/list.php:161
+msgid "Line 1"
+msgstr "Línea 1"
+
+#: views/list.php:162
+msgid "Messages"
+msgstr "Mensajes"
+
+#: views/list.php:163
+msgid "Directory"
+msgstr "Directorio"
+
+#: views/list.php:167
+msgid "Number to dial"
+msgstr "Número a marcar"
+
+#: views/list.php:168 views/list.php:185 views/list.php:191
+msgid "Call"
+msgstr "Llamar"
+
+#: views/list.php:170
+msgid "Keys are sent through <code>/CGI/Execute</code>; the screen refreshes by itself after each one. If a model does not have a key, it ignores it."
+msgstr "Las teclas se mandan por <code>/CGI/Execute</code>; la pantalla se actualiza sola después de cada una. Si un modelo no tiene una tecla, la ignora."
+
+#: views/list.php:176
+msgid "Refresh every 3 s"
+msgstr "Actualizar cada 3 s"
+
+#: views/list.php:177
+msgid "Refresh"
+msgstr "Actualizar"
+
+#: views/list.php:187
+msgid "Number or extension"
+msgstr "Número o extensión"
+
+#: views/list.php:188
+msgid "The phone dials by itself (<code>Dial:</code>) and the call goes out on the speaker."
+msgstr "El teléfono marca solo (<code>Dial:</code>) y la llamada sale por altavoz."
+
+#: views/list.php:197
+msgid "Bulk action"
+msgstr "Acción masiva"
+
+#: views/list.php:203
+msgid "Stop"
+msgstr "Detener"
+
+#: views/list.php:211
+msgid "Edit phone"
+msgstr "Editar teléfono"
+
+#: views/list.php:221 lib/JsStrings.php:30 assets/js/ciscosipmanager.js:318
+msgid "Generated SEP"
+msgstr "SEP generado"
+
+#: views/media.php:5 views/settings.php:122
+msgid "Backgrounds"
+msgstr "Fondos de pantalla"
+
+#: views/media.php:6
+#, php-format
+msgid "Stored in %s with their thumbnail, and the <code>List.xml</code> is built. The image is scaled and cropped to the screen size. On the phone: <i>Settings → Preferences → Wallpaper</i>."
+msgstr "Se guardan en %s con su miniatura y se arma el <code>List.xml</code>. La imagen se escala y recorta al tamaño de la pantalla. En el teléfono: <i>Ajustes → Preferencias → Fondo de pantalla</i>."
+
+#: views/media.php:6
+msgid "resolution"
+msgstr "resolución"
+
+#: views/media.php:13
+msgid "Upload background"
+msgstr "Subir fondo"
+
+#: views/media.php:18 views/settings.php:116
+msgid "Ringtones"
+msgstr "Tonos de llamada"
+
+#: views/media.php:19
+#, php-format
+msgid "Two lists in %s: %s (narrowband, <code>.raw</code> µ-law 8 kHz, used by 79xx) and %s (wideband, <code>.rwb</code> 16-bit PCM 16 kHz, used by 88xx). Upload WAV, MP3 or other audio and it is converted for each list (2 s maximum, with sox or ffmpeg). Up to 50 ringtones per list. On the phone: <i>Settings → Preferences → Ringtone</i>."
+msgstr "Dos listas en %s: %s (banda angosta, <code>.raw</code> µ-law 8 kHz, la usan los 79xx) y %s (banda ancha, <code>.rwb</code> PCM 16 bits 16 kHz, la usan los 88xx). Subí WAV, MP3 u otro audio y se convierte para cada lista (máximo 2 s, con sox o ffmpeg). Hasta 50 tonos por lista. En el teléfono: <i>Ajustes → Preferencias → Tono de llamada</i>."
+
+#: views/media.php:25
+msgid "Name on the phone (max. 25)"
+msgstr "Nombre en el teléfono (máx. 25)"
+
+#: views/media.php:27
+msgid "Both lists (recommended)"
+msgstr "Las dos listas (recomendado)"
+
+#: views/media.php:28
+msgid "Wideband only (88xx)"
+msgstr "Solo banda ancha (88xx)"
+
+#: views/media.php:29
+msgid "Narrowband only (79xx)"
+msgstr "Solo banda angosta (79xx)"
+
+#: views/media.php:32
+msgid "Upload ringtone"
+msgstr "Subir tono"
+
+#: views/media.php:33
+msgid "An already converted <code>.raw</code> only goes to narrowband and an <code>.rwb</code> only to wideband."
+msgstr "Un <code>.raw</code> ya convertido va solo a banda angosta y un <code>.rwb</code> solo a banda ancha."
+
+#: views/media.php:45
+msgid "format not viewable"
+msgstr "formato no visible"
+
+#: views/media.php:46
+#, php-format
+msgid "%s is missing"
+msgstr "no está %s"
+
+#: views/media.php:47
+msgid "no thumbnail in List.xml"
+msgstr "sin miniatura en List.xml"
+
+#: views/media.php:48
+msgid "(the .png is missing)"
+msgstr "(falta el .png)"
+
+#: views/media.php:49
+msgid "No backgrounds."
+msgstr "Sin fondos."
+
+#: views/media.php:50
+msgid "thumbnail"
+msgstr "miniatura"
+
+#: views/media.php:51
+msgid "(does not exist)"
+msgstr "(no existe)"
+
+#: views/media.php:52
+msgid "Empty list."
+msgstr "Lista vacía."
+
+#: views/media.php:53
+msgid "It does not exist yet; it is created when the first ringtone is uploaded."
+msgstr "Todavía no existe; se crea al subir el primer tono."
+
+#: views/media.php:56
+#, php-format
+msgid "Delete the background %s?"
+msgstr "¿Borrar el fondo %s?"
+
+#: views/media.php:57
+#, php-format
+msgid "Remove %s from the ringtone list?"
+msgstr "¿Quitar %s de la lista de tonos?"
+
+#: views/media.php:58
+#, php-format
+msgid "Also delete the file %s? (Cancel = only remove it from the list)"
+msgstr "¿Borrar también el archivo %s? (Cancelar = solo quitarlo de la lista)"
+
+#: views/settings.php:16
+msgid "Provisioning"
+msgstr "Provisión"
+
+#: views/settings.php:18
+msgid "Provisioning directory"
+msgstr "Directorio de provisión"
+
+#: views/settings.php:18
+msgid "The one your HTTP server serves on port 6970. It must be writable by the <code>asterisk</code> user."
+msgstr "El que sirve tu HTTP en el puerto 6970. Debe ser escribible por el usuario <code>asterisk</code>."
+
+#: views/settings.php:19
+msgid "History directory"
+msgstr "Directorio del historial"
+
+#: views/settings.php:19
+msgid "Empty = <code>/var/lib/asterisk/ciscosipmanager/history</code>. It must <b>not</b> be inside the directory served on :6970: old versions contain SIP passwords."
+msgstr "Vacío = <code>/var/lib/asterisk/ciscosipmanager/history</code>. Que <b>no</b> esté dentro del directorio servido en :6970: las versiones viejas tienen claves SIP."
+
+#: views/settings.php:20
+msgid "Versions to keep per phone"
+msgstr "Versiones a conservar por teléfono"
+
+#: views/settings.php:21
+msgid "PBX server (LAN)"
+msgstr "Servidor PBX (LAN)"
+
+#: views/settings.php:21
+msgid "IP of the FreePBX used by the local phones."
+msgstr "IP del FreePBX que usan los teléfonos locales."
+
+#: views/settings.php:22
+msgid "PBX server (VPN)"
+msgstr "Servidor PBX (VPN)"
+
+#: views/settings.php:22
+#, php-format
+msgid "IP of the PBX inside the VPN. Empty = first IP of the VPN network (%s)."
+msgstr "IP del PBX dentro de la VPN. Vacío = primera IP de la red VPN (%s)."
+
+#: views/settings.php:25
+msgid "Order in Auto mode"
+msgstr "Orden en modo Auto"
+
+#: views/settings.php:28
+msgid "VPN first, LAN second"
+msgstr "VPN primero, LAN segundo"
+
+#: views/settings.php:29
+msgid "LAN first, VPN second"
+msgstr "LAN primero, VPN segundo"
+
+#: views/settings.php:31
+msgid "Priority of the two callManagerGroup servers on phones with Auto location."
+msgstr "Prioridad de los dos servidores de callManagerGroup en los teléfonos con ubicación Auto."
+
+#: views/settings.php:35
+msgid "Softkey file"
+msgstr "Archivo de softkeys"
+
+#: views/settings.php:35
+msgid "E.g. <code>SoftKeys.xml</code> (in the provisioning directory). Empty = the phone default."
+msgstr "Ej. <code>SoftKeys.xml</code> (en el directorio de provisión). Vacío = el del teléfono."
+
+#: views/settings.php:36
+msgid "Dial template"
+msgstr "Dial template"
+
+#: views/settings.php:36
+msgid "E.g. <code>dialplan.xml</code>. Empty = none."
+msgstr "Ej. <code>dialplan.xml</code>. Vacío = ninguno."
+
+#: views/settings.php:37
+msgid "SIP port"
+msgstr "Puerto SIP"
+
+#: views/settings.php:40
+msgid "SIP transport"
+msgstr "Transporte SIP"
+
+#: views/settings.php:44
+msgid "TCP (recommended; requires tcpenable=yes and transport=tcp on the extension)"
+msgstr "TCP (recomendado; requiere tcpenable=yes y transport=tcp en la extensión)"
+
+#: views/settings.php:49
+msgid "RTP start"
+msgstr "RTP inicio"
+
+#: views/settings.php:50
+msgid "RTP end"
+msgstr "RTP fin"
+
+#: views/settings.php:51
+msgid "Registration expiry (s)"
+msgstr "Expiración de registro (s)"
+
+#: views/settings.php:51
+msgid "Lower values (300) make remote phones show up sooner after a VPN outage."
+msgstr "Valores más bajos (300) hacen que los remotos reaparezcan antes tras una caída de la VPN."
+
+#: views/settings.php:54
+msgid "Networks"
+msgstr "Redes"
+
+#: views/settings.php:56
+msgid "LAN network (CIDR)"
+msgstr "Red LAN (CIDR)"
+
+#: views/settings.php:57
+msgid "ocserv VPN network (CIDR)"
+msgstr "Red VPN ocserv (CIDR)"
+
+#: views/settings.php:60
+msgid "Regional"
+msgstr "Regional"
+
+#: views/settings.php:62
+msgid "Cisco time zone"
+msgstr "Zona horaria Cisco"
+
+#: views/settings.php:62
+msgid "Buenos Aires = <code>SA Eastern Standard Time</code>"
+msgstr "Buenos Aires = <code>SA Eastern Standard Time</code>"
+
+#: views/settings.php:63
+msgid "Date format"
+msgstr "Formato de fecha"
+
+#: views/settings.php:64
+msgid "NTP server"
+msgstr "Servidor NTP"
+
+#: views/settings.php:64
+msgid "Empty = the same PBX server."
+msgstr "Vacío = el mismo servidor PBX."
+
+#: views/settings.php:65
+msgid "User locale"
+msgstr "User locale"
+
+#: views/settings.php:65
+msgid "E.g. <code>Spanish_Spain</code>. Empty = English (requires the locale files in the provisioning directory)."
+msgstr "Ej. <code>Spanish_Spain</code>. Vacío = inglés (requiere los archivos de locale en el directorio de provisión)."
+
+#: views/settings.php:66
+msgid "Language code"
+msgstr "Código de idioma"
+
+#: views/settings.php:67
+msgid "Locale version"
+msgstr "Versión del locale"
+
+#: views/settings.php:68
+msgid "Network locale"
+msgstr "Network locale"
+
+#: views/settings.php:68
+msgid "E.g. <code>Argentina</code> (tones). Empty = United States."
+msgstr "Ej. <code>Argentina</code> (tonos). Vacío = Estados Unidos."
+
+#: views/settings.php:69
+msgid "Voicemail number"
+msgstr "Número de buzón de voz"
+
+#: views/settings.php:72
+msgid "Firmware (loadInformation)"
+msgstr "Firmware (loadInformation)"
+
+#: views/settings.php:73
+msgid "Empty = do not force firmware. E.g. 7945: <code>SIP45.9-4-2SR3-1S</code>, 88xx: <code>sip8845_65.14-x-x-xxxx-x</code>"
+msgstr "Vacío = no forzar firmware. Ej. 7945: <code>SIP45.9-4-2SR3-1S</code>, 88xx: <code>sip8845_65.14-x-x-xxxx-x</code>"
+
+#: views/settings.php:76
+msgid "Access"
+msgstr "Acceso"
+
+#: views/settings.php:78
+msgid "SSH user"
+msgstr "Usuario SSH"
+
+#: views/settings.php:79
+msgid "SSH password"
+msgstr "Clave SSH"
+
+#: views/settings.php:80
+msgid "Enable SSH on the phone"
+msgstr "Habilitar SSH en el teléfono"
+
+#: views/settings.php:81
+msgid "Enable the phone web page (needed to see the status from here)"
+msgstr "Habilitar página web del teléfono (necesario para ver estado desde acá)"
+
+#: views/settings.php:84
+msgid "XML services (vhost :6972)"
+msgstr "Servicios XML (vhost :6972)"
+
+#: views/settings.php:86
+msgid "<code>{SERVER}</code> is replaced by the IP of the phone PBX. It is required to send messages/push."
+msgstr "<code>{SERVER}</code> se reemplaza por la IP del PBX del teléfono. Es obligatoria para poder enviar mensajes/push."
+
+#: views/settings.php:93
+msgid "Push user"
+msgstr "Usuario push"
+
+#: views/settings.php:94
+msgid "Push password"
+msgstr "Clave push"
+
+#: views/settings.php:95
+msgid "DocumentRoot of the :6972 vhost"
+msgstr "DocumentRoot del vhost :6972"
+
+#: views/settings.php:95
+msgid "If set and writable, the module writes <code>authenticate.php</code> there when saving."
+msgstr "Si se indica y es escribible, el módulo escribe ahí <code>authenticate.php</code> al guardar."
+
+#: views/settings.php:101
+msgid "If you do not set the DocumentRoot, copy this by hand into the :6972 vhost."
+msgstr "Si no indicás el DocumentRoot, copiá esto a mano en el vhost de :6972."
+
+#: views/settings.php:105
+msgid "Notices and remote control"
+msgstr "Avisos y control remoto"
+
+#: views/settings.php:107
+msgid "Turn the display on when sending a message or dialing (Display:On)"
+msgstr "Encender la pantalla al mandar un mensaje o marcar (Display:On)"
+
+#: views/settings.php:108
+msgid "Minutes on"
+msgstr "Minutos encendida"
+
+#: views/settings.php:108
+msgid "Afterwards it goes back to the phone display schedule."
+msgstr "Después vuelve al horario de pantalla del teléfono."
+
+#: views/settings.php:113
+msgid "occtl command"
+msgstr "Comando occtl"
+
+#: views/settings.php:113
+msgid "With <code>sudo -n</code> and the sudoers rule shown in the <i>VPN sessions</i> tab."
+msgstr "Con <code>sudo -n</code> y la regla de sudoers que se muestra en la pestaña <i>Sesiones VPN</i>."
+
+#: views/settings.php:118
+msgid "Narrowband list (.raw)"
+msgstr "Lista de banda angosta (.raw)"
+
+#: views/settings.php:118
+msgid "Default <code>RingList.xml</code>. If it does not exist with that capitalization but does with another one, that one is used."
+msgstr "Por defecto <code>RingList.xml</code>. Si no existe con esas mayúsculas pero sí con otras, se usa ese."
+
+#: views/settings.php:119
+msgid "Wideband list (.rwb)"
+msgstr "Lista de banda ancha (.rwb)"
+
+#: views/settings.php:119
+msgid "Default <code>RingList-wb.xml</code> (88xx)."
+msgstr "Por defecto <code>RingList-wb.xml</code> (88xx)."
+
+#: views/settings.php:123
+msgid "<code>Desktops/WidthxHeightxColor</code> folder and thumbnail size per family. Only change them if your firmware uses different ones."
+msgstr "Carpeta <code>Desktops/AnchoxAltoxColor</code> y tamaño de miniatura por familia. Solo cambialos si tu firmware usa otros."
+
+#: views/settings.php:126
+#, php-format
+msgid "%s · folder"
+msgstr "%s · carpeta"
+
+#: views/settings.php:127
+#, php-format
+msgid "%s · thumbnail"
+msgstr "%s · miniatura"
+
+#: views/settings.php:131
+msgid "CAPF (LSC certificates)"
+msgstr "CAPF (certificados LSC)"
+
+#: views/settings.php:133
+msgid "Include capfAuthMode and capfList in the SEP files"
+msgstr "Incluir capfAuthMode y capfList en los SEP"
+
+#: views/settings.php:134
+msgid "CAPF server"
+msgstr "Servidor CAPF"
+
+#: views/settings.php:134
+msgid "Empty = the same PBX server as the phone."
+msgstr "Vacío = el mismo servidor PBX del teléfono."
+
+#: views/settings.php:135
+msgid "CAPF port"
+msgstr "Puerto CAPF"
+
+#: views/settings.php:141
+msgid "1 — Password"
+msgstr "1 — Contraseña"
+
+#: views/settings.php:141
+msgid "2 — Empty password"
+msgstr "2 — Contraseña vacía"
+
+#: views/settings.php:141
+msgid "3 — LSC, falling back to MIC"
+msgstr "3 — LSC, con respaldo en MIC"
+
+#: views/settings.php:141
+msgid "4 — MIC"
+msgstr "4 — MIC"
+
+#: views/settings.php:145
+msgid "It must match <code>capfctl --install</code>: 2 = without <code>--password</code>; 1 = with <code>--password</code>; 3/4 = with <code>--certificate</code> and <code>capfd --verify cmca2.pem</code>. A <code>capfAuthMode</code> in the extra XML of the phone takes precedence."
+msgstr "Tiene que coincidir con <code>capfctl --install</code>: 2 = sin <code>--password</code>; 1 = con <code>--password</code>; 3/4 = con <code>--certificate</code> y <code>capfd --verify cmca2.pem</code>. Un <code>capfAuthMode</code> en el XML extra del teléfono tiene prioridad."
+
+#: views/settings.php:149
+msgid "AnyConnect VPN (ocserv)"
+msgstr "VPN AnyConnect (ocserv)"
+
+#: views/settings.php:151
+msgid "VPN server URL"
+msgstr "URL del servidor VPN"
+
+#: views/settings.php:151
+msgid "Format <code>https://host/svc</code> (or <code>https://host:4443/svc</code>). Only 88xx/89xx/99xx have a VPN client."
+msgstr "Formato <code>https://host/svc</code> (o <code>https://host:4443/svc</code>). Solo 88xx/89xx/99xx tienen cliente VPN."
+
+#: views/settings.php:152
+msgid "Alternate URL (optional)"
+msgstr "URL alternativa (opcional)"
+
+#: views/settings.php:156
+msgid "Authentication method"
+msgstr "Método de autenticación"
+
+#: views/settings.php:159
+msgid "User and password"
+msgstr "Usuario y contraseña"
+
+#: views/settings.php:160
+msgid "Password only"
+msgstr "Solo contraseña"
+
+#: views/settings.php:161
+msgid "Phone certificate (MIC or LSC)"
+msgstr "Certificado del teléfono (MIC o LSC)"
+
+#: views/settings.php:166
+msgid "Remember password on the phone"
+msgstr "Recordar contraseña en el teléfono"
+
+#: views/settings.php:169
+msgid "ocserv server certificate (PEM)"
+msgstr "Certificado del servidor ocserv (PEM)"
+
+#: views/settings.php:172
+msgid "Paste the ocserv <code>server-cert</code> certificate. The certHash (SHA1/base64) the phone requires is calculated from it."
+msgstr "Pegá el certificado de <code>server-cert</code> de ocserv. Se calcula el certHash (SHA1/base64) que exige el teléfono."
+
+#: views/settings.php:173
+msgid "Current certHash:"
+msgstr "certHash actual:"
+
+#: views/settings.php:178
+msgid "Save settings"
+msgstr "Guardar ajustes"
+
+#: views/vpn.php:3
+#, php-format
+msgid "Active ocserv sessions (%s). Refreshed every 15 s."
+msgstr "Sesiones activas de ocserv (%s). Se actualiza cada 15 s."
+
+#: views/vpn.php:7
+msgid "Phone"
+msgstr "Teléfono"
+
+#: views/vpn.php:7
+msgid "User (certificate)"
+msgstr "Usuario (certificado)"
+
+#: views/vpn.php:7
+msgid "Public IP"
+msgstr "IP pública"
+
+#: views/vpn.php:7
+msgid "VPN IP"
+msgstr "IP VPN"
+
+#: views/vpn.php:7
+msgid "Connected"
+msgstr "Conectado"
+
+#: views/vpn.php:7
+msgid "Duration"
+msgstr "Duración"
+
+#: views/vpn.php:7
+msgid "Client"
+msgstr "Cliente"
+
+#: views/vpn.php:11
+msgid "The module runs as the <code>asterisk</code> user and <code>occtl</code> needs root. Add with <code>sudo visudo -f /etc/sudoers.d/ciscosipmanager</code>:"
+msgstr "El módulo corre como el usuario <code>asterisk</code> y <code>occtl</code> necesita root. Agregá con <code>sudo visudo -f /etc/sudoers.d/ciscosipmanager</code>:"
+
+#: views/vpn.php:13
+msgid "If <code>occtl</code> is in another path (<code>command -v occtl</code>), change it here and in <i>Settings → VPN sessions</i>."
+msgstr "Si <code>occtl</code> está en otra ruta (<code>command -v occtl</code>), cambiala acá y en <i>Ajustes → Sesiones VPN</i>."
+
+#: views/vpn.php:20
+msgid "Could not query occtl:"
+msgstr "No se pudo consultar occtl:"
+
+#: views/vpn.php:21
+msgid "There are no active VPN sessions."
+msgstr "No hay sesiones VPN activas."
+
+#: views/vpn.php:22
+msgid "(not in the module)"
+msgstr "(no está en el módulo)"
+
+#: views/vpn.php:23
+msgid "No DTLS: audio goes over TCP"
+msgstr "Sin DTLS: el audio va por TCP"
+
+#: views/vpn.php:24
+msgid "TCP only"
+msgstr "solo TCP"
+
+#: views/vpn.php:25
+msgid "Disconnect"
+msgstr "Desconectar"
+
+#: views/vpn.php:26
+#, php-format
+msgid "Disconnect the session of %s? The phone reconnects by itself."
+msgstr "¿Desconectar la sesión de %s? El teléfono vuelve a conectar solo."
+
+#: lib/JsStrings.php:13 assets/js/ciscosipmanager.js:288
+#, javascript-format, php-format
+msgid "%s did not register again. Continue with the rest?"
+msgstr "%s no volvió a registrar. ¿Seguir con los demás?"
+
+#: lib/JsStrings.php:14 assets/js/ciscosipmanager.js:259
+#, javascript-format, php-format
+msgid "%s of the selected phones are imported and not reviewed yet. Regenerate them anyway? (the original stays in the history)"
+msgstr "%s de los seleccionados son importados sin revisar. ¿Regenerarlos igual? (el original queda en el historial)"
+
+#: lib/JsStrings.php:15 assets/js/ciscosipmanager.js:266
+#, javascript-format, php-format
+msgid "%s · %s phone(s)"
+msgstr "%s · %s teléfono(s)"
+
+#: lib/JsStrings.php:16 assets/js/ciscosipmanager.js:263
+#, javascript-format, php-format
+msgid "%s: %s phone(s)?"
+msgstr "¿%s: %s teléfono(s)?"
+
+#: lib/JsStrings.php:17 assets/js/ciscosipmanager.js:118
+#, javascript-format, php-format
+msgid "Changes from %s → current"
+msgstr "Cambios de %s → actual"
+
+#: lib/JsStrings.php:18 assets/js/ciscosipmanager.js:313
+msgid "Current file → what the module would generate"
+msgstr "Archivo actual → lo que generaría el módulo"
+
+#: lib/JsStrings.php:19 assets/js/ciscosipmanager.js:352
+msgid "Delete this phone and its SEP file?"
+msgstr "¿Eliminar este teléfono y su archivo SEP?"
+
+#: lib/JsStrings.php:20 assets/js/ciscosipmanager.js:62
+msgid "Deleted"
+msgstr "Borrado"
+
+#: lib/JsStrings.php:21 assets/js/ciscosipmanager.js:189
+#, javascript-format, php-format
+msgid "Dialing %s"
+msgstr "Marcando %s"
+
+#: lib/JsStrings.php:22 assets/js/ciscosipmanager.js:188
+#, javascript-format, php-format
+msgid "Dialing %s…"
+msgstr "Marcando %s…"
+
+#: lib/JsStrings.php:23 assets/js/ciscosipmanager.js:91
+msgid "Diff vs current"
+msgstr "Diff vs actual"
+
+#: lib/JsStrings.php:24 assets/js/ciscosipmanager.js:58
+msgid "Edit"
+msgstr "Edición"
+
+#: lib/JsStrings.php:25 assets/js/ciscosipmanager.js:61
+msgid "Edited by hand"
+msgstr "Editado a mano"
+
+#: lib/JsStrings.php:26 assets/js/ciscosipmanager.js:43
+#: assets/js/ciscosipmanager.js:51
+msgid "Error"
+msgstr "Error"
+
+#: lib/JsStrings.php:27 assets/js/ciscosipmanager.js:275
+#, javascript-format, php-format
+msgid "Finished: %s OK, %s with errors."
+msgstr "Terminado: %s OK, %s con error."
+
+#: lib/JsStrings.php:29 assets/js/ciscosipmanager.js:40
+msgid "Fully restart the phone?"
+msgstr "¿Reiniciar por completo el teléfono?"
+
+#: lib/JsStrings.php:31 assets/js/ciscosipmanager.js:63
+msgid "Import"
+msgstr "Importación"
+
+#: lib/JsStrings.php:32 assets/js/ciscosipmanager.js:233
+msgid "Message"
+msgstr "Mensaje"
+
+#: lib/JsStrings.php:33 assets/js/ciscosipmanager.js:149
+#: assets/js/ciscosipmanager.js:331 assets/js/ciscosipmanager.js:346
+#: assets/js/ciscosipmanager.js:377
+msgid "Network error"
+msgstr "Error de red"
+
+#: lib/JsStrings.php:34 assets/js/ciscosipmanager.js:70
+msgid "No differences."
+msgstr "Sin diferencias."
+
+#: lib/JsStrings.php:35 assets/js/ciscosipmanager.js:82
+msgid "No versions yet. They start being saved with the next generation."
+msgstr "Todavía no hay versiones. Se empiezan a guardar con la próxima generación."
+
+#: lib/JsStrings.php:38 assets/js/ciscosipmanager.js:59
+msgid "Regeneration"
+msgstr "Regeneración"
+
+#: lib/JsStrings.php:40 assets/js/ciscosipmanager.js:137
+msgid "Requesting screenshot…"
+msgstr "Pidiendo captura…"
+
+#: lib/JsStrings.php:42 assets/js/ciscosipmanager.js:60
+msgid "Restoration"
+msgstr "Restauración"
+
+#: lib/JsStrings.php:43 assets/js/ciscosipmanager.js:91
+msgid "Restore"
+msgstr "Restaurar"
+
+#: lib/JsStrings.php:44 assets/js/ciscosipmanager.js:124
+msgid "Restore this version of the SEP? Afterwards you need to restart the phone or reload its config."
+msgstr "¿Restaurar esta versión del SEP? Después tenés que reiniciar o recargar la config del teléfono."
+
+#: lib/JsStrings.php:45 assets/js/ciscosipmanager.js:368
+msgid "Sending…"
+msgstr "Enviando…"
+
+#: lib/JsStrings.php:46 assets/js/ciscosipmanager.js:275
+msgid "Stopped."
+msgstr "Detenido."
+
+#: lib/JsStrings.php:47 assets/js/ciscosipmanager.js:294
+msgid "Stopping after the current phone…"
+msgstr "Deteniendo después del teléfono actual…"
+
+#: lib/JsStrings.php:48 assets/js/ciscosipmanager.js:81
+msgid "The file on disk does not match the latest version in the history (it was edited outside the module). It will be saved as \"Edited by hand\" before the next change."
+msgstr "El archivo en disco no coincide con la última versión del historial (fue editado fuera del módulo). Se va a guardar como \"Editado a mano\" antes del próximo cambio."
+
+#: lib/JsStrings.php:49 assets/js/ciscosipmanager.js:41
+msgid "This phone was imported and the file is the original one. Did you already check \"Compare with what would be generated\"? The original stays in the history."
+msgstr "Este teléfono fue importado y el archivo es el original. ¿Ya revisaste \"Comparar con lo que se generaría\"? El original queda en el historial."
+
+#: lib/JsStrings.php:50 assets/js/ciscosipmanager.js:90
+msgid "View"
+msgstr "Ver"
+
+#: lib/JsStrings.php:51 assets/js/ciscosipmanager.js:142
+#, javascript-format, php-format
+msgid "captured %s"
+msgstr "captura %s"
+
+#: lib/JsStrings.php:52 assets/js/ciscosipmanager.js:88
+msgid "current"
+msgstr "actual"
+
+#: lib/JsStrings.php:53 assets/js/ciscosipmanager.js:287
+msgid "did not register again in time"
+msgstr "no volvió a registrar a tiempo"
+
+#: lib/JsStrings.php:54 assets/js/ciscosipmanager.js:291
+msgid "network error"
+msgstr "error de red"
+
+#: lib/JsStrings.php:55 assets/js/ciscosipmanager.js:287
+msgid "registered again"
+msgstr "registrado de nuevo"
+
+#: lib/JsStrings.php:56 assets/js/ciscosipmanager.js:31
+#, javascript-format, php-format
+msgid "updated %s"
+msgstr "actualizado %s"
+
+#: lib/JsStrings.php:57 assets/js/ciscosipmanager.js:286
+msgid "waiting for it to register again…"
+msgstr "esperando que vuelva a registrar…"

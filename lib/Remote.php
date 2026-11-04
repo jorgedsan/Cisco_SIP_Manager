@@ -220,6 +220,12 @@ class Remote
 		'wb' => ['label' => 'Banda ancha (88xx)', 'ext' => 'rwb', 'default' => 'RingList-wb.xml'],
 	];
 
+	/** Nombre traducido de la lista de tonos */
+	public static function ringKindLabel($kind)
+	{
+		return $kind === 'wb' ? _('Wideband (88xx)') : _('Narrowband (79xx)');
+	}
+
 	public static function validRingFile($f)
 	{
 		return (bool)preg_match('/^[A-Za-z0-9._-]{1,21}\.(raw|rwb)$/', (string)$f) && strpos($f, '..') === false;
