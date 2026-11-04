@@ -1,73 +1,75 @@
-# Cambios
+# Changelog
+
+**English** · [Español](CHANGELOG.es.md)
 
 ## 17.7.0
 
-- Interfaz en el idioma de FreePBX (gettext): inglés y castellano incluidos
+- UI follows the FreePBX language (gettext): English and Spanish included
 
 ## 17.6.8
 
-- Editar teléfono en un cuadro sobre la lista
+- Edit phone in a dialog over the list
 
 ## 17.6.7
 
-- Opción Habilitar video por teléfono (8845/8865, 8851/8861 con cámara USB)
+- Per-phone Enable video option (8845/8865, 8851/8861 with USB camera)
 
 ## 17.6.6
 
-- callLogBlfEnabled según el modelo (1 en 88xx, 3 en 79xx)
+- callLogBlfEnabled according to the model (1 on 88xx, 3 on 79xx)
 
 ## 17.6.5
 
-- Botones Restart todos y Reboot todos en la pestaña Teléfonos
+- Restart all and Reboot all buttons in the Phones tab
 
 ## 17.6.4
 
-- Fondos: miniaturas y rutas leídas del List.xml (fondos de Cisco), se conservan las entradas existentes
+- Backgrounds: thumbnails and paths read from List.xml (Cisco backgrounds), existing entries are kept
 
 ## 17.6.3
 
-- Listas de tonos por defecto RingList.xml y RingList-wb.xml
+- Default ringtone lists RingList.xml and RingList-wb.xml
 
 ## 17.6.2
 
-- Tonos en Ringlist.xml (.raw) y Ringlist-wb.xml (.rwb, 88xx)
+- Ringtones in Ringlist.xml (.raw) and Ringlist-wb.xml (.rwb, 88xx)
 
 ## 17.6.1
 
-- Lista de tonos como RingList.xml (configurable), límites de 50 tonos y 25 caracteres
+- Ringtone list as RingList.xml (configurable), limits of 50 ringtones and 25 characters
 
 ## 17.6.0
 
-- Control remoto, marcar, encender pantalla en avisos, inventario, sesiones VPN, acciones masivas, editores de teclas/fondos/tonos
+- Remote control, dialing, display on for notices, inventory, VPN sessions, bulk actions, key/background/ringtone editors
 
 ## 17.5.0
 
-- Ver pantalla (/CGI/Screenshot) con actualización automática
+- View screen (/CGI/Screenshot) with automatic refresh
 
 ## 17.4.0
 
-- Plantilla basada en SEP 88xx funcionando; ubicación Auto con servidores VPN+LAN y autoNetDetect; XML extra reemplaza elementos; versionStamp
+- Template based on a working 88xx SEP; Auto location with VPN+LAN servers and autoNetDetect; extra XML replaces elements; versionStamp
 
 ## 17.3.0
 
-- Importación de SEP existentes sin sobrescribir; líneas adicionales; comparar con lo que se generaría
+- Import of existing SEP files without overwriting them; additional lines; compare with what would be generated
 
 ## 17.2.0
 
-- Bloque CAPF global (capfAuthMode, por defecto contraseña vacía, y capfList)
+- Global CAPF block (capfAuthMode, empty password by default, and capfList)
 
 ## 17.1.0
 
-- Historial de versiones de SEP con diff y restauración; integración con Backup & Restore
+- SEP version history with diff and restore; Backup & Restore integration
 
 ## 17.0.3
 
-- Defaults: SIP por TCP, VPN por certificado
+- Defaults: SIP over TCP, VPN by certificate
 
 ## 17.0.2
 
-- Corrige authMethod VPN, 79x5 sin VPN, transporte SIP configurable
+- Fixes VPN authMethod, 79x5 without VPN, configurable SIP transport
 
 ## 17.0.1
 
-- Primera versión
+- First version
