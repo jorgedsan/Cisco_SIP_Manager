@@ -1,5 +1,9 @@
 # Cambios
 
+## 17.7.0
+
+- Interfaz en el idioma de FreePBX (gettext): inglés y castellano incluidos
+
 ## 17.6.8
 
 - Editar teléfono en un cuadro sobre la lista

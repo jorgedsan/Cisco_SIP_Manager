@@ -48,7 +48,14 @@ class CnfBuilder
 	}
 
 	/** Video: 8845/8865 tienen cámara integrada; 8851/8861 aceptan cámara USB; 8811/8841 no tienen video */
-	const VIDEO_MODELS = ['8845' => 'cámara integrada', '8865' => 'cámara integrada', '8851' => 'cámara USB', '8861' => 'cámara USB'];
+	const VIDEO_MODELS = ['8845' => 'builtin', '8865' => 'builtin', '8851' => 'usb', '8861' => 'usb'];
+
+	/** VIDEO_MODELS con la descripción traducida: ['8845' => 'built-in camera', ...] */
+	public static function videoModelLabels()
+	{
+		$t = ['builtin' => _('built-in camera'), 'usb' => _('USB camera')];
+		return array_map(function ($k) use ($t) { return $t[$k]; }, self::VIDEO_MODELS);
+	}
 
 	public static function supportsVideo($model)
 	{

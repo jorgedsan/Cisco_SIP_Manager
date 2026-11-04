@@ -5,6 +5,7 @@ require_once __DIR__ . '/lib/CnfBuilder.php';
 require_once __DIR__ . '/lib/History.php';
 require_once __DIR__ . '/lib/Importer.php';
 require_once __DIR__ . '/lib/Remote.php';
+require_once __DIR__ . '/lib/JsStrings.php';
 
 use FreePBX\modules\Ciscosipmanager\CnfBuilder;
 use FreePBX\modules\Ciscosipmanager\History;
@@ -186,7 +187,7 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 		if (!empty($in['vpn_cert_pem'])) {
 			$hash = CnfBuilder::certHash($in['vpn_cert_pem']);
 			if ($hash === false) {
-				return 'El certificado VPN no es un PEM válido; no se calculó el hash.';
+				return _('The VPN certificate is not a valid PEM; the hash was not calculated.');
 			}
 		}
 		$this->setConfig('vpn_cert_hash', $hash);
@@ -216,31 +217,31 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 	{
 		$mac = CnfBuilder::normalizeMac($in['mac'] ?? '');
 		if (!$mac) {
-			return 'MAC inválida (12 dígitos hexadecimales).';
+			return _('Invalid MAC (12 hexadecimal digits).');
 		}
 		$model = $in['model'] ?? '';
 		if (!isset(CnfBuilder::MODELS[$model])) {
-			return $model === '' ? 'Falta elegir el modelo.' : 'Modelo no soportado.';
+			return $model === '' ? _('Choose the model.') : _('Unsupported model.');
 		}
 		$ext = trim($in['extension'] ?? '');
 		$dev = $this->FreePBX->Core->getDevice($ext);
 		if (empty($dev)) {
-			return "La extensión $ext no existe.";
+			return sprintf(_('Extension %s does not exist.'), $ext);
 		}
 		if (($dev['tech'] ?? '') !== 'sip') {
-			return "La extensión $ext no es chan_sip (tech={$dev['tech']}).";
+			return sprintf(_('Extension %s is not chan_sip (tech=%s).'), $ext, $dev['tech']);
 		}
 		if (!empty($in['vpn_enabled']) && !CnfBuilder::supportsVpn($model)) {
-			return 'El ' . CnfBuilder::MODELS[$model][0] . ' no tiene cliente VPN AnyConnect (solo 88xx/89xx/99xx).';
+			return sprintf(_('The %s has no AnyConnect VPN client (88xx/89xx/99xx only).'), CnfBuilder::MODELS[$model][0]);
 		}
 		$network = in_array($in['network'] ?? 'auto', ['auto', 'lan', 'vpn'], true) ? $in['network'] : 'auto';
 		$extra = trim($in['extra_xml'] ?? '');
 		if ($extra !== '' && !CnfBuilder::validFragment($extra)) {
-			return 'El XML extra no es un fragmento XML válido.';
+			return _('The extra XML is not a valid XML fragment.');
 		}
 		$extraLines = trim($in['extra_lines_xml'] ?? '');
 		if ($extraLines !== '' && !CnfBuilder::validFragment($extraLines)) {
-			return 'Las líneas adicionales no son un fragmento XML válido.';
+			return _('The additional lines are not a valid XML fragment.');
 		}
 		$row = [
 			':mac' => $mac,
@@ -268,7 +269,7 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 				$id = (int)$this->db->lastInsertId();
 			}
 		} catch (\PDOException $e) {
-			return 'Error de base de datos (¿MAC duplicada?): ' . $e->getMessage();
+			return sprintf(_('Database error (duplicate MAC?): %s'), $e->getMessage());
 		}
 		$newId = $id;
 		return $generate ? $this->generateCnf($this->getPhone($id), 'edit') : null;
@@ -318,14 +319,14 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 			if ($r['extension'] !== '') {
 				$dev = $this->FreePBX->Core->getDevice($r['extension']);
 				if (empty($dev)) {
-					$r['errors'][] = "La extensión {$r['extension']} no existe en FreePBX";
+					$r['errors'][] = sprintf(_('Extension %s does not exist in FreePBX'), $r['extension']);
 				} elseif (($dev['tech'] ?? '') !== 'sip') {
-					$r['errors'][] = "La extensión {$r['extension']} no es chan_sip";
+					$r['errors'][] = sprintf(_('Extension %s is not chan_sip'), $r['extension']);
 				} elseif ($r['password'] !== '' && $r['password'] !== ($dev['secret'] ?? '')) {
-					$r['warnings'][] = 'La clave del archivo no coincide con la de FreePBX: al regenerar se usa la de FreePBX';
+					$r['warnings'][] = _('The password in the file does not match the FreePBX one: the FreePBX one is used when regenerating');
 				}
 				if (in_array($r['extension'], $used, true)) {
-					$r['warnings'][] = "La extensión {$r['extension']} ya está asignada a otro teléfono del módulo";
+					$r['warnings'][] = sprintf(_('Extension %s is already assigned to another phone in the module'), $r['extension']);
 				}
 				// El User-Agent del registro es más confiable que loadInformation
 				$st = $this->phoneStatus(['id' => 0, 'extension' => $r['extension']], $s);
@@ -342,11 +343,11 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 				}
 			}
 			if (!$r['model'] && !$r['errors']) {
-				$r['warnings'][] = 'Elegí el modelo' . ($r['model_hint'] ? ' (por el firmware puede ser ' . $r['model_hint'] . ')' : '');
+				$r['warnings'][] = ($r['model_hint'] ? sprintf(_('Choose the model (judging by the firmware it may be %s)'), $r['model_hint']) : _('Choose the model'));
 			}
 			if ($r['vpn'] && $r['model'] && !CnfBuilder::supportsVpn($r['model'])) {
 				$r['vpn'] = false;
-				$r['warnings'][] = 'Tiene vpnGroup pero el modelo no soporta VPN: no se va a incluir';
+				$r['warnings'][] = _('It has a vpnGroup but the model does not support VPN: it will not be included');
 			}
 			if (!$r['errors']) {
 				$r['network'] = $this->guessNetwork($r, $s);
@@ -528,10 +529,10 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 		$path = $this->cnfPath($mac);
 		$dir = dirname($path);
 		if (!is_dir($dir) || !is_writable($dir)) {
-			return "No se puede escribir en $dir (revisá permisos para el usuario asterisk).";
+			return sprintf(_('Cannot write to %s (check the permissions for the asterisk user).'), $dir);
 		}
 		if (file_put_contents($path . '.tmp', $content) === false || !rename($path . '.tmp', $path)) {
-			return "Error escribiendo $path";
+			return sprintf(_('Error writing %s'), $path);
 		}
 		@chmod($path, 0644);
 		return null;
@@ -544,7 +545,7 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 	public function generateCnf($p, $reason = 'regen')
 	{
 		if (!$p) {
-			return 'Teléfono inexistente.';
+			return _('Phone not found.');
 		}
 		$content = $this->buildCnf($p);
 		$path = $this->cnfPath($p['mac']);
@@ -615,7 +616,7 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 		$h = $this->history();
 		$content = $h->get($p['mac'], $name);
 		if ($content === false) {
-			return 'Versión inexistente.';
+			return _('Version not found.');
 		}
 		$this->captureManual($p['mac']);
 		if ($err = $this->writeCnfFile($p['mac'], $content)) {
@@ -738,11 +739,11 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 	{
 		$map = ['restart' => 'cisco-csm-restart', 'reset' => 'cisco-csm-reset', 'checkcfg' => 'cisco-csm-check-cfg'];
 		if (!isset($map[$kind])) {
-			return ['ok' => false, 'msg' => 'Acción desconocida'];
+			return ['ok' => false, 'msg' => _('Unknown action')];
 		}
 		$r = $this->asteriskCommand('sip notify ' . $map[$kind] . ' ' . $p['extension']);
 		if ($r === false) {
-			return ['ok' => false, 'msg' => 'Sin conexión AMI'];
+			return ['ok' => false, 'msg' => _('No AMI connection')];
 		}
 		return ['ok' => stripos($r, 'Sending NOTIFY') !== false, 'msg' => trim(preg_replace('/^Privilege:.*$/m', '', $r))];
 	}
@@ -769,10 +770,10 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 		$code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		curl_close($ch);
 		if ($body === false) {
-			return ['ok' => false, 'msg' => "No se pudo conectar con el teléfono: $err"];
+			return ['ok' => false, 'msg' => sprintf(_('Could not connect to the phone: %s'), $err)];
 		}
 		if ($code == 401) {
-			return ['ok' => false, 'msg' => 'El teléfono rechazó el usuario/clave push (HTTP 401). Revisá authenticationURL y que responda AUTHORIZED.'];
+			return ['ok' => false, 'msg' => _('The phone rejected the push user/password (HTTP 401). Check authenticationURL and that it answers AUTHORIZED.')];
 		}
 		$mime = null;
 		if (strncmp($body, "\x89PNG", 4) === 0) {
@@ -783,12 +784,12 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 			$mime = 'image/jpeg';
 		}
 		if (!$mime && preg_match('/<CiscoIPPhoneError\s+Number="(\d+)"/i', $body, $em)) {
-			$why = ['4' => ' (suele ser error de autenticación: revisá authenticationURL y el usuario/clave push)'][$em[1]] ?? '';
-			return ['ok' => false, 'msg' => 'El teléfono respondió CiscoIPPhoneError ' . $em[1] . $why . '.'];
+			$why = ['4' => ' ' . _('(usually an authentication error: check authenticationURL and the push user/password)')][$em[1]] ?? '';
+			return ['ok' => false, 'msg' => sprintf(_('The phone answered CiscoIPPhoneError %s.'), $em[1] . $why)];
 		}
 		if (!$mime) {
 			$txt = trim(preg_replace('/\s+/', ' ', strip_tags($body)));
-			return ['ok' => false, 'msg' => "El teléfono no devolvió una imagen (HTTP $code)" . ($txt !== '' ? ': ' . mb_substr($txt, 0, 200) : '') . '. ¿Está habilitada la página web del teléfono?'];
+			return ['ok' => false, 'msg' => sprintf(_('The phone did not return an image (HTTP %s). Is the phone web page enabled?'), $code . ($txt !== '' ? ': ' . mb_substr($txt, 0, 200) : ''))];
 		}
 		return ['ok' => true, 'msg' => 'OK', 'data' => 'data:' . $mime . ';base64,' . base64_encode($body)];
 	}
@@ -797,7 +798,7 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 	{
 		$st = $this->phoneStatus($p, $this->getSettings());
 		if (!filter_var($st['ip'], FILTER_VALIDATE_IP)) {
-			return ['ok' => false, 'msg' => 'El teléfono no está registrado (no hay IP).'];
+			return ['ok' => false, 'msg' => _('The phone is not registered (no IP).')];
 		}
 		return ['ip' => $st['ip']] + $this->fetchScreenshot($st['ip']);
 	}
@@ -806,7 +807,7 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 	public function pushXml($ip, $xml)
 	{
 		if (!filter_var($ip, FILTER_VALIDATE_IP)) {
-			return ['ok' => false, 'msg' => 'Teléfono sin IP (no registrado)'];
+			return ['ok' => false, 'msg' => _('Phone without IP (not registered)')];
 		}
 		$s = $this->getSettings();
 		$ch = curl_init('http://' . $ip . '/CGI/Execute');
@@ -825,10 +826,10 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 		$code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		curl_close($ch);
 		if ($body === false) {
-			return ['ok' => false, 'msg' => "Error HTTP: $err"];
+			return ['ok' => false, 'msg' => sprintf(_('HTTP error: %s'), $err)];
 		}
 		if ($code == 401 || stripos($body, 'CiscoIPPhoneError') !== false) {
-			return ['ok' => false, 'msg' => "El teléfono rechazó el push (HTTP $code): " . trim(strip_tags($body)) . ' — revisá authenticationURL y usuario/clave.'];
+			return ['ok' => false, 'msg' => sprintf(_('The phone rejected the push (HTTP %s): %s — check authenticationURL and user/password.'), $code, trim(strip_tags($body)))];
 		}
 		return ['ok' => $code == 200, 'msg' => "HTTP $code"];
 	}
@@ -868,7 +869,7 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 	public function sendKey($p, $key)
 	{
 		if (!Remote::validKey($key)) {
-			return ['ok' => false, 'msg' => 'Tecla no permitida'];
+			return ['ok' => false, 'msg' => _('Key not allowed')];
 		}
 		return $this->executeOnPhone($p, ['Key:' . $key]);
 	}
@@ -876,7 +877,7 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 	public function dial($p, $number)
 	{
 		if (!Remote::validNumber($number)) {
-			return ['ok' => false, 'msg' => 'Número inválido (solo dígitos, *, # y +)'];
+			return ['ok' => false, 'msg' => _('Invalid number (digits, *, # and + only)')];
 		}
 		$s = $this->getSettings();
 		$uris = !empty($s['wake_display']) ? ['Display:On:' . max(1, (int)$s['wake_minutes'])] : [];
@@ -895,10 +896,10 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 		$err = curl_error($ch);
 		curl_close($ch);
 		if ($body === false) {
-			return ['ok' => false, 'msg' => "No se pudo conectar: $err"];
+			return ['ok' => false, 'msg' => sprintf(_('Could not connect: %s'), $err)];
 		}
 		$info = $code == 200 ? Remote::parseDeviceInfo($body) : null;
-		return $info ? ['ok' => true, 'info' => $info] : ['ok' => false, 'msg' => "Respuesta inválida (HTTP $code). ¿Está habilitada la página web del teléfono?"];
+		return $info ? ['ok' => true, 'info' => $info] : ['ok' => false, 'msg' => sprintf(_('Invalid response (HTTP %s). Is the phone web page enabled?'), $code)];
 	}
 
 	public function inventoryOf($mac)
@@ -911,7 +912,7 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 	{
 		$st = $this->phoneStatus($p, $this->getSettings());
 		if (!filter_var($st['ip'], FILTER_VALIDATE_IP)) {
-			return ['ok' => false, 'msg' => 'no registrado'];
+			return ['ok' => false, 'msg' => _('not registered')];
 		}
 		$r = $this->fetchDeviceInfo($st['ip']);
 		if ($r['ok']) {
@@ -933,13 +934,13 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 			$fwHave = $info['versionID'] ?? ($info['appLoadID'] ?? '');
 			$warn = [];
 			if ($real && $real !== $p['model']) {
-				$warn[] = "El teléfono informa modelo $real y en el módulo está como {$p['model']}";
+				$warn[] = sprintf(_('The phone reports model %s and the module has it as %s'), $real, $p['model']);
 			}
 			if ($fwWant !== '' && $fwHave !== '' && stripos($fwHave, $fwWant) === false && stripos($fwWant, $fwHave) === false) {
-				$warn[] = "Firmware distinto al configurado ($fwWant)";
+				$warn[] = sprintf(_('Firmware differs from the configured one (%s)'), $fwWant);
 			}
 			if (!empty($info['MACAddress']) && strtoupper(preg_replace('/[^0-9A-Fa-f]/', '', $info['MACAddress'])) !== $p['mac']) {
-				$warn[] = 'La MAC informada no coincide: la IP registrada puede ser de otro equipo';
+				$warn[] = _('The reported MAC does not match: the registered IP may belong to another device');
 			}
 			$rows[] = ['phone' => $p, 'inv' => $inv, 'info' => $info, 'warnings' => $warn];
 		}
@@ -952,7 +953,7 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 	{
 		$cmd = trim($this->getSettings()['occtl_cmd']);
 		if ($cmd === '' || !preg_match('#^[A-Za-z0-9_./ -]+$#', $cmd)) {
-			return [false, 'Comando occtl inválido en Ajustes'];
+			return [false, _('Invalid occtl command in Settings')];
 		}
 		$out = [];
 		$rc = 0;
@@ -996,11 +997,11 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 	{
 		list($ok, $out) = $this->occtl('-j show users');
 		if (!$ok) {
-			return ['ok' => false, 'msg' => $out ?: 'occtl falló'];
+			return ['ok' => false, 'msg' => $out ?: _('occtl failed')];
 		}
 		$users = self::parseOcctlUsers($out);
 		if ($users === null) {
-			return ['ok' => false, 'msg' => 'No se pudo interpretar la salida de occtl'];
+			return ['ok' => false, 'msg' => _('Could not parse the occtl output')];
 		}
 		$byMac = [];
 		foreach ($this->getPhones() as $p) {
@@ -1017,10 +1018,10 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 	public function vpnDisconnect($id)
 	{
 		if (!ctype_digit((string)$id)) {
-			return ['ok' => false, 'msg' => 'ID inválido'];
+			return ['ok' => false, 'msg' => _('Invalid ID')];
 		}
 		list($ok, $out) = $this->occtl('disconnect id ' . (int)$id);
-		return ['ok' => $ok, 'msg' => $ok ? 'Sesión desconectada' : $out];
+		return ['ok' => $ok, 'msg' => $ok ? _('Session disconnected') : $out];
 	}
 
 	/* ===================== Fondos y tonos ===================== */
@@ -1089,15 +1090,15 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 	{
 		$f = $this->bgFamilies()[$fam] ?? null;
 		if (!$f) {
-			return 'Familia de pantalla inválida.';
+			return _('Invalid screen family.');
 		}
 		$img = Remote::loadImage($tmp);
 		if (!$img) {
-			return 'No es una imagen válida (PNG, JPEG, GIF, BMP o WebP, hasta 20 MB).';
+			return _('Not a valid image (PNG, JPEG, GIF, BMP or WebP, up to 20 MB).');
 		}
 		$path = $this->bgPath($fam);
 		if (!is_dir($path) && !@mkdir($path, 0755, true)) {
-			return "No se pudo crear $path";
+			return sprintf(_('Could not create %s'), $path);
 		}
 		list($w, $h) = Remote::dims($f['dir']);
 		list($tw, $th) = Remote::dims($f['thumb']);
@@ -1112,13 +1113,13 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 		$thumb = Remote::cover($img, $tw, $th);
 		$ok = imagepng($full, $path . '/' . $name . '.png') && imagepng($thumb, $path . '/' . $name . '-tn.png');
 		if (!$ok) {
-			return "No se pudo escribir en $path";
+			return sprintf(_('Could not write to %s'), $path);
 		}
 		@chmod($path . '/' . $name . '.png', 0644);
 		@chmod($path . '/' . $name . '-tn.png', 0644);
 		$rel = 'Desktops/' . $f['dir'] . '/';
 		$items[] = ['name' => $name, 'image' => $rel . $name . '-tn.png', 'url' => $rel . $name . '.png'];
-		return $this->writeList($fam, $items) ? null : 'No se pudo escribir List.xml';
+		return $this->writeList($fam, $items) ? null : _('Could not write List.xml');
 	}
 
 	public function bgDelete($fam, $name)
@@ -1134,7 +1135,7 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 			}
 		}
 		if (!$del) {
-			return 'Imagen inexistente.';
+			return _('Image not found.');
 		}
 		// Solo se borran archivos que estén dentro de la carpeta de esta familia
 		$dir = realpath($this->bgPath($fam));
@@ -1144,7 +1145,7 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 				@unlink($file);
 			}
 		}
-		return $this->writeList($fam, $keep) ? null : 'No se pudo escribir List.xml';
+		return $this->writeList($fam, $keep) ? null : _('Could not write List.xml');
 	}
 
 	private function ringPath()
@@ -1216,12 +1217,12 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 			exec(escapeshellarg($ff) . ' -y -v error -i ' . escapeshellarg($in) . ' -t 2.01 ' . $fmt . ' ' . escapeshellarg($tmp) . ' 2>&1', $out, $rc);
 		} else {
 			@unlink($tmp);
-			return [null, 'No hay sox ni ffmpeg en el servidor para convertir el audio.'];
+			return [null, _('Neither sox nor ffmpeg is available on the server to convert the audio.')];
 		}
 		$raw = $rc === 0 ? file_get_contents($tmp) : false;
 		@unlink($tmp);
 		if (!$raw) {
-			return [null, 'No se pudo convertir el audio: ' . implode(' ', $out)];
+			return [null, sprintf(_('Could not convert the audio: %s'), implode(' ', $out))];
 		}
 		return [$wb ? Remote::fitRingWb($raw) : Remote::fitRing($raw), null];
 	}
@@ -1240,7 +1241,7 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 		}
 		$kinds = array_values(array_intersect(array_keys(Remote::RING_KINDS), $kinds));
 		if (!$kinds) {
-			return 'Elegí al menos una lista.';
+			return _('Choose at least one list.');
 		}
 		$display = trim($display) !== '' ? mb_substr(trim($display), 0, 25) : mb_substr(pathinfo($origName, PATHINFO_FILENAME), 0, 25);
 		$base = substr(Remote::slug($origName), 0, 18); // FileName: máximo 25 caracteres con la extensión
@@ -1248,7 +1249,7 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 		foreach ($kinds as $kind) {
 			$rings = $this->ringList($kind);
 			if (count($rings) >= 50) {
-				$errs[] = basename($this->ringlistFile($kind)) . ': ya tiene 50 tonos, el máximo.';
+				$errs[] = sprintf(_('%s: it already has 50 ringtones, the maximum.'), basename($this->ringlistFile($kind)));
 				continue;
 			}
 			if ($ext === 'raw') {
@@ -1269,13 +1270,13 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 				$file = $base . '-' . $i . '.' . $fext;
 			}
 			if (file_put_contents($this->ringPath() . '/' . $file, $data) === false) {
-				$errs[] = 'No se pudo escribir ' . $file . ' en el directorio de provisión.';
+				$errs[] = sprintf(_('Could not write %s in the provisioning directory.'), $file);
 				continue;
 			}
 			@chmod($this->ringPath() . '/' . $file, 0644);
 			$rings[] = ['name' => $display, 'file' => $file];
 			if (!$this->writeRinglist($kind, $rings)) {
-				$errs[] = 'No se pudo escribir ' . basename($this->ringlistFile($kind));
+				$errs[] = sprintf(_('Could not write %s'), basename($this->ringlistFile($kind)));
 			}
 		}
 		return $errs ? implode("\n", $errs) : null;
@@ -1286,12 +1287,12 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 		$rings = $this->ringList($kind);
 		$left = array_values(array_filter($rings, function ($r) use ($file) { return $r['file'] !== $file; }));
 		if (count($left) === count($rings)) {
-			return 'Tono inexistente.';
+			return _('Ringtone not found.');
 		}
 		if ($deleteFile && Remote::validRingFile($file)) {
 			@unlink($this->ringPath() . '/' . $file);
 		}
-		return $this->writeRinglist($kind, $left) ? null : 'No se pudo escribir ' . basename($this->ringlistFile($kind));
+		return $this->writeRinglist($kind, $left) ? null : sprintf(_('Could not write %s'), basename($this->ringlistFile($kind)));
 	}
 
 	public function ringRename($kind, $file, $name)
@@ -1305,7 +1306,7 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 			}
 		}
 		unset($r);
-		return !$found ? 'Tono inexistente.' : ($this->writeRinglist($kind, $rings) ? null : 'No se pudo escribir ' . basename($this->ringlistFile($kind)));
+		return !$found ? _('Ringtone not found.') : ($this->writeRinglist($kind, $rings) ? null : sprintf(_('Could not write %s'), basename($this->ringlistFile($kind))));
 	}
 
 	/* ===================== FreePBX UI / AJAX ===================== */
@@ -1325,17 +1326,17 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 
 			case 'versions':
 				$p = $this->getPhone($_REQUEST['id'] ?? 0);
-				return $p ? ['status' => true] + $this->versionsFor($p) : ['status' => false, 'message' => 'Teléfono inexistente'];
+				return $p ? ['status' => true] + $this->versionsFor($p) : ['status' => false, 'message' => _('Phone not found')];
 
 			case 'version':
 				$p = $this->getPhone($_REQUEST['id'] ?? 0);
 				$c = $p ? $this->history()->get($p['mac'], $_REQUEST['name'] ?? '') : false;
-				return $c === false ? ['status' => false, 'message' => 'Versión inexistente'] : ['status' => true, 'xml' => $c];
+				return $c === false ? ['status' => false, 'message' => _('Version not found')] : ['status' => true, 'xml' => $c];
 
 			case 'diff':
 				$p = $this->getPhone($_REQUEST['id'] ?? 0);
 				if (!$p) {
-					return ['status' => false, 'message' => 'Teléfono inexistente'];
+					return ['status' => false, 'message' => _('Phone not found')];
 				}
 				$h = $this->history();
 				$old = $h->get($p['mac'], $_REQUEST['name'] ?? '');
@@ -1347,20 +1348,20 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 					$new = $h->get($p['mac'], $against);
 				}
 				if ($old === false || $new === false) {
-					return ['status' => false, 'message' => 'Versión inexistente'];
+					return ['status' => false, 'message' => _('Version not found')];
 				}
 				return ['status' => true, 'diff' => History::diff($old, $new)];
 
 			case 'restoreversion':
 				$p = $this->getPhone($_REQUEST['id'] ?? 0);
-				$e = $p ? $this->restoreVersion($p, $_REQUEST['name'] ?? '') : 'Teléfono inexistente';
-				return ['status' => $e === null, 'message' => $e ?: 'Versión restaurada en el teléfono. Recordá que si regenerás, se vuelve a armar desde los datos actuales.'];
+				$e = $p ? $this->restoreVersion($p, $_REQUEST['name'] ?? '') : _('Phone not found');
+				return ['status' => $e === null, 'message' => $e ?: _('Version restored on the phone. Remember that regenerating builds it again from the current data.')];
 
 			case 'key':
 			case 'dial':
 				$p = $this->getPhone($_REQUEST['id'] ?? 0);
 				if (!$p) {
-					return ['status' => false, 'message' => 'Teléfono inexistente'];
+					return ['status' => false, 'message' => _('Phone not found')];
 				}
 				$r = $cmd === 'key' ? $this->sendKey($p, $_REQUEST['key'] ?? '') : $this->dial($p, $_REQUEST['number'] ?? '');
 				return ['status' => $r['ok'], 'message' => $r['msg']];
@@ -1399,43 +1400,43 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 
 			case 'bgdelete':
 				$e = $this->bgDelete($_REQUEST['fam'] ?? '', $_REQUEST['name'] ?? '');
-				return ['status' => $e === null, 'message' => $e ?: 'Imagen eliminada'];
+				return ['status' => $e === null, 'message' => $e ?: _('Image deleted')];
 
 			case 'ringlist':
 				$lists = [];
 				foreach (Remote::RING_KINDS as $k => $info) {
-					$lists[] = ['kind' => $k, 'label' => $info['label'], 'file' => basename($this->ringlistFile($k)),
+					$lists[] = ['kind' => $k, 'label' => Remote::ringKindLabel($k), 'file' => basename($this->ringlistFile($k)),
 						'exists' => is_file($this->ringlistFile($k)), 'rings' => $this->ringList($k)];
 				}
 				return ['status' => true, 'lists' => $lists];
 
 			case 'ringdelete':
 				$e = $this->ringDelete($_REQUEST['kind'] ?? 'nb', $_REQUEST['file'] ?? '', !empty($_REQUEST['delfile']));
-				return ['status' => $e === null, 'message' => $e ?: 'Tono quitado'];
+				return ['status' => $e === null, 'message' => $e ?: _('Ringtone removed')];
 
 			case 'ringrename':
 				$e = $this->ringRename($_REQUEST['kind'] ?? 'nb', $_REQUEST['file'] ?? '', $_REQUEST['name'] ?? '');
-				return ['status' => $e === null, 'message' => $e ?: 'Nombre actualizado'];
+				return ['status' => $e === null, 'message' => $e ?: _('Name updated')];
 
 			case 'phoneform':
 				$html = $this->phoneFormHtml((int)($_REQUEST['id'] ?? 0));
-				return $html === null ? ['status' => false, 'message' => 'Teléfono inexistente'] : ['status' => true, 'html' => $html];
+				return $html === null ? ['status' => false, 'message' => _('Phone not found')] : ['status' => true, 'html' => $html];
 
 			case 'savephone':
 				$err = $this->savePhone($_POST);
-				return ['status' => $err === null, 'message' => $err ?: 'Teléfono guardado y SEP generado.'];
+				return ['status' => $err === null, 'message' => $err ?: _('Phone saved and SEP generated.')];
 
 			case 'screenshot':
 				$p = $this->getPhone($_REQUEST['id'] ?? 0);
 				if (!$p) {
-					return ['status' => false, 'message' => 'Teléfono inexistente'];
+					return ['status' => false, 'message' => _('Phone not found')];
 				}
 				$r = $this->screenshotPhone($p);
 				return ['status' => $r['ok'], 'message' => $r['msg'], 'image' => $r['data'] ?? null, 'ip' => $r['ip'] ?? null, 'time' => date('H:i:s')];
 
 			case 'diffgen':
 				$p = $this->getPhone($_REQUEST['id'] ?? 0);
-				return $p ? ['status' => true, 'diff' => $this->diffGenerated($p)] : ['status' => false, 'message' => 'Teléfono inexistente'];
+				return $p ? ['status' => true, 'diff' => $this->diffGenerated($p)] : ['status' => false, 'message' => _('Phone not found')];
 
 			case 'preview':
 				$p = $this->getPhone($_REQUEST['id'] ?? 0);
@@ -1444,12 +1445,12 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 			case 'action':
 				$p = $this->getPhone($_REQUEST['id'] ?? 0);
 				if (!$p) {
-					return ['status' => false, 'message' => 'Teléfono inexistente'];
+					return ['status' => false, 'message' => _('Phone not found')];
 				}
 				$act = $_REQUEST['act'] ?? '';
 				if ($act === 'regen') {
 					$e = $this->generateCnf($p, 'regen');
-					return ['status' => $e === null, 'message' => $e ?: 'Archivo regenerado'];
+					return ['status' => $e === null, 'message' => $e ?: _('File regenerated')];
 				}
 				if (in_array($act, ['restart', 'reset', 'checkcfg'], true)) {
 					$r = $this->sipNotify($p, $act);
@@ -1457,10 +1458,10 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 				}
 				if ($act === 'message') {
 					$st = $this->phoneStatus($p, $this->getSettings());
-					$r = $this->pushMessage($p, $st['ip'], $_REQUEST['title'] ?? 'Aviso', $_REQUEST['text'] ?? '', !empty($_REQUEST['beep']));
+					$r = $this->pushMessage($p, $st['ip'], $_REQUEST['title'] ?? _('Notice'), $_REQUEST['text'] ?? '', !empty($_REQUEST['beep']));
 					return ['status' => $r['ok'], 'message' => $r['msg']];
 				}
-				return ['status' => false, 'message' => 'Acción desconocida'];
+				return ['status' => false, 'message' => _('Unknown action')];
 
 			case 'messageall':
 				$s = $this->getSettings();
@@ -1468,15 +1469,15 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 				foreach ($this->getPhones() as $p) {
 					$st = $this->phoneStatus($p, $s);
 					if (!$st['registered']) {
-						$res[] = ['ext' => $p['extension'], 'ok' => false, 'msg' => 'no registrado'];
+						$res[] = ['ext' => $p['extension'], 'ok' => false, 'msg' => _('not registered')];
 						continue;
 					}
-					$r = $this->pushMessage($p, $st['ip'], $_REQUEST['title'] ?? 'Aviso', $_REQUEST['text'] ?? '', !empty($_REQUEST['beep']));
+					$r = $this->pushMessage($p, $st['ip'], $_REQUEST['title'] ?? _('Notice'), $_REQUEST['text'] ?? '', !empty($_REQUEST['beep']));
 					$res[] = ['ext' => $p['extension'], 'ok' => $r['ok'], 'msg' => $r['msg']];
 				}
 				return ['status' => true, 'results' => $res];
 		}
-		return ['status' => false, 'message' => 'Comando desconocido'];
+		return ['status' => false, 'message' => _('Unknown command')];
 	}
 
 	public function doConfigPageInit($page)
@@ -1490,44 +1491,44 @@ class Ciscosipmanager extends \FreePBX_Helpers implements \BMO
 		switch ($action) {
 			case 'save_phone':
 				$err = $this->savePhone($_POST);
-				$this->flash[] = $err ? ['danger', $err] : ['success', 'Teléfono guardado y SEP generado.'];
+				$this->flash[] = $err ? ['danger', $err] : ['success', _('Phone saved and SEP generated.')];
 				break;
 			case 'delete_phone':
 				$this->deletePhone($_POST['id'] ?? 0);
-				$this->flash[] = ['success', 'Teléfono eliminado.'];
+				$this->flash[] = ['success', _('Phone deleted.')];
 				break;
 			case 'save_settings':
 				$err = $this->saveSettings($_POST);
-				$this->flash[] = $err ? ['warning', $err] : ['success', 'Ajustes guardados. Regenerá los SEP para aplicarlos.'];
+				$this->flash[] = $err ? ['warning', $err] : ['success', _('Settings saved. Regenerate the SEP files to apply them.')];
 				break;
 			case 'bg_upload':
 				$f = $_FILES['image'] ?? null;
-				$e = ($f && $f['error'] === UPLOAD_ERR_OK) ? $this->bgUpload($_POST['fam'] ?? '', $f['tmp_name'], $f['name']) : 'No se recibió la imagen.';
-				$this->flash[] = $e ? ['danger', $e] : ['success', 'Fondo agregado. Los teléfonos lo ven en Ajustes → Preferencias → Fondo de pantalla.'];
+				$e = ($f && $f['error'] === UPLOAD_ERR_OK) ? $this->bgUpload($_POST['fam'] ?? '', $f['tmp_name'], $f['name']) : _('The image was not received.');
+				$this->flash[] = $e ? ['danger', $e] : ['success', _('Background added. Phones see it under Settings → Preferences → Wallpaper.')];
 				break;
 			case 'ring_upload':
 				$f = $_FILES['ring'] ?? null;
-				$e = ($f && $f['error'] === UPLOAD_ERR_OK) ? $this->ringUpload($f['tmp_name'], $f['name'], $_POST['display'] ?? '', explode(',', $_POST['target'] ?? 'nb,wb')) : 'No se recibió el archivo.';
-				$this->flash[] = $e ? ['danger', $e] : ['success', 'Tono agregado.'];
+				$e = ($f && $f['error'] === UPLOAD_ERR_OK) ? $this->ringUpload($f['tmp_name'], $f['name'], $_POST['display'] ?? '', explode(',', $_POST['target'] ?? 'nb,wb')) : _('The file was not received.');
+				$this->flash[] = $e ? ['danger', $e] : ['success', _('Ringtone added.')];
 				break;
 			case 'import_selected':
 				list($ok, $errs) = $this->importSelected($_POST);
 				if ($ok) {
-					$this->flash[] = ['success', count($ok) . ' teléfono(s) importado(s). Los archivos no se modificaron: revisá "Comparar con lo que se generaría" antes de regenerar.'];
+					$this->flash[] = ['success', sprintf(_('%d phone(s) imported. The files were not modified: check "Compare with what would be generated" before regenerating.'), count($ok))];
 				}
 				if ($errs) {
 					$this->flash[] = ['danger', implode("\n", $errs)];
 				}
 				if (!$ok && !$errs) {
-					$this->flash[] = ['warning', 'No seleccionaste ningún archivo.'];
+					$this->flash[] = ['warning', _('You did not select any file.')];
 				}
 				break;
 			case 'regen_all':
 				$skipped = [];
 				$errs = $this->regenAll('regen', $skipped);
-				$this->flash[] = $errs ? ['danger', implode("\n", $errs)] : ['success', 'Todos los SEP regenerados.'];
+				$this->flash[] = $errs ? ['danger', implode("\n", $errs)] : ['success', _('All SEP files regenerated.')];
 				if ($skipped) {
-					$this->flash[] = ['warning', 'No se tocaron los importados pendientes de revisión (ext. ' . implode(', ', $skipped) . '). Regeneralos uno por uno desde Acciones después de comparar.'];
+					$this->flash[] = ['warning', sprintf(_('Imported phones pending review were not touched (ext. %s). Regenerate them one by one from Actions after comparing.'), implode(', ', $skipped))];
 				}
 				break;
 		}

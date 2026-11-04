@@ -23,10 +23,10 @@ class Importer
 	{
 		$load = (string)$load;
 		if (preg_match('/^sip8845_65/i', $load)) {
-			return '8845 u 8865';
+			return _('8845 or 8865');
 		}
 		if (preg_match('/^sip88xx/i', $load)) {
-			return '8811, 8841, 8851 u 8861';
+			return _('8811, 8841, 8851 or 8861');
 		}
 		return '';
 	}
@@ -52,7 +52,7 @@ class Importer
 			'model_hint' => '', 'extra_names' => [], 'extra_lines' => 0, 'errors' => [], 'warnings' => [],
 		];
 		if (!preg_match('/^SEP([0-9A-Fa-f]{12})\.cnf\.xml$/', $filename, $m)) {
-			$r['errors'][] = 'El nombre no es SEP<MAC>.cnf.xml';
+			$r['errors'][] = _('The name is not SEP<MAC>.cnf.xml');
 			return $r;
 		}
 		$r['mac'] = strtoupper($m[1]);
@@ -62,7 +62,7 @@ class Importer
 		libxml_clear_errors();
 		libxml_use_internal_errors($prev);
 		if ($xml === false || $xml->getName() !== 'device') {
-			$r['errors'][] = 'No es un XML <device> válido';
+			$r['errors'][] = _('Not a valid <device> XML');
 			return $r;
 		}
 
@@ -85,7 +85,7 @@ class Importer
 			}
 		}
 		if ($r['extension'] === '') {
-			$r['errors'][] = 'No tiene <line button="1"> con <name>';
+			$r['errors'][] = _('It has no <line button="1"> with <name>');
 		}
 		$r['extra_lines'] = count($extraLines);
 		$r['extra_lines_xml'] = implode("\n", $extraLines);
